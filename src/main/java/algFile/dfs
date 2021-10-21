@@ -1,0 +1,23 @@
+dfs
+初始化
+对于点集中的每一个点u
+    u.color = white
+    u.pion = nil
+time = 0
+
+对于点集中的每一个点u
+    如果u.color = white
+    dfs-visit(G,u)
+
+dfs-visit(G,u)
+    time = time + 1
+    u.d = time
+    u.color = gray
+
+for each v in adj[u]
+    if v.color = white
+    v.pai = u
+    dfs-visit(v)
+u.color = black
+time = time + 1
+u.f = time

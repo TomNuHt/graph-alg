@@ -1,0 +1,20 @@
+初次始终化各个节点
+    u.color = white 各个节点的颜色设置为白色
+    u.d = 无穷 u.d是根节点到节点u的之间的距离
+    u.pai = nil u.pai 是u节点的父亲节点
+挑选一个根节点s，并且把s.color 设置为gray
+s.d = 0
+s.pai = nil
+初始化一个空队列Q
+把s放入队列Q中
+
+当队列非空时，把队列的第一个元素u从队列中踢出
+    找到所有和u相连的元素v
+        如果v的颜色是白色的，那么把它的颜色变成gray
+        v.d = u.d + 1
+        v.pai = u
+u.color = black
+
+
+
+
