@@ -14,17 +14,17 @@ public class Dfs {
     GraphList graphList;
 
     //各个节点的颜色
-    ArrayList<String> colorList = new ArrayList<String>();
+    public ArrayList<String> colorList = new ArrayList<String>();
     //各个节点到根节点的距离
-    ArrayList<Double> disList = new ArrayList<Double>();
+    public ArrayList<Double> disList = new ArrayList<Double>();
     //每个节点的父亲节点
-    ArrayList<String> pionList = new ArrayList<String>();
+    public ArrayList<String> pionList = new ArrayList<String>();
 
     //每个顶点被发现的时间
-    ArrayList<Integer> visitTime = new ArrayList<Integer>();
+    public ArrayList<Integer> visitTime = new ArrayList<Integer>();
 
     //每个顶点离开的时间
-    ArrayList<Integer> leaveTime = new ArrayList<Integer>();
+    public ArrayList<Integer> leaveTime = new ArrayList<Integer>();
     int time = 0;
 
 
@@ -46,7 +46,6 @@ public class Dfs {
             }
 
         }
-//        PrintLog.log(pionList);
     }
 
     public void dfsCore(int i){
@@ -89,7 +88,7 @@ public class Dfs {
 
         colorList.set(i,AlgColor.ALG_COLOR_BLACK);
         PrintLog.log("将第" + i + "个点设置为黑色");
-        time = time + 1;
+//        time = time + 1;
         PrintLog.log("第" + i + "个点的离开时间为：" + time);
         leaveTime.set(i,time);
 

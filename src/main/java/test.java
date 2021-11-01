@@ -1,4 +1,3 @@
-import Jama.Matrix;
 import alg.*;
 import pojo.GraphList;
 import pojo.GraphMatrix;
@@ -6,6 +5,7 @@ import util.GraphTool;
 import util.PrintLog;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class test {
 
@@ -81,7 +81,6 @@ public class test {
 //        Kosaraju kosaraju = new Kosaraju();
 //        kosaraju.search(graphList);
 
-
 //        GraphMatrix graphMatrix = new GraphMatrix(8,8);
 //        graphMatrix.addConnected("1");
 //        graphMatrix.addConnected("2 4 5");
@@ -92,39 +91,69 @@ public class test {
 //        graphMatrix.addConnected("5 7");
 //        graphMatrix.addConnected("7");
 //        Integer[][] array = graphMatrix.returnMatrix();
-//
 //        PrintLog.printMatrix(array);
-//
 //        GraphList graphList = GraphTool.matrixToList(array);
 //        Kosaraju kosaraju = new Kosaraju();
 //        kosaraju.search(graphList);
-//
+
+//        GraphMatrix graphMatrix = new GraphMatrix(12,12);
+//        graphMatrix.addConnected("1 8 11");
+//        graphMatrix.addConnected("0 2 4");
+//        graphMatrix.addConnected("1 3 4");
+//        graphMatrix.addConnected("2 4");
+//        graphMatrix.addConnected("1 2 3 5");
+//        graphMatrix.addConnected("4 6 7 ");
+//        graphMatrix.addConnected("5 7");
+//        graphMatrix.addConnected("5 6");
+//        graphMatrix.addConnected("0 11 9 10");
+//        graphMatrix.addConnected("8 10");
+//        graphMatrix.addConnected("8 9");
+//        graphMatrix.addConnected("0 8");
 
         GraphMatrix graphMatrix = new GraphMatrix(12,12);
-        graphMatrix.addConnected("1 8 11");
-        graphMatrix.addConnected("0 2 4");
-        graphMatrix.addConnected("1 3 4");
-        graphMatrix.addConnected("2 4");
-        graphMatrix.addConnected("1 2 3 5");
-        graphMatrix.addConnected("4 6 7 ");
+        graphMatrix.addConnected("1");
+        graphMatrix.addConnected("2 9");
+        graphMatrix.addConnected("1 3");
+        graphMatrix.addConnected("4 8");
+        graphMatrix.addConnected("3 5 10");
+        graphMatrix.addConnected("4 6 7");
         graphMatrix.addConnected("5 7");
-        graphMatrix.addConnected("5 6");
-        graphMatrix.addConnected("0 11 9 10");
-        graphMatrix.addConnected("8 10");
-        graphMatrix.addConnected("8 9");
-        graphMatrix.addConnected("0 8");
+        graphMatrix.addConnected("5 6 8 9");
+        graphMatrix.addConnected("3 7");
+        graphMatrix.addConnected("1 7");
+        graphMatrix.addConnected("4 11");
+        graphMatrix.addConnected("10");
+
         Integer[][] array = graphMatrix.returnMatrix();
         GraphList graphList = GraphTool.matrixToList(array);
-        DfsBccPoint dfsBccPoint = new DfsBccPoint();
-        dfsBccPoint.search(graphList);
-//        PrintLog.printArray(dfsBccPoint.dfn);
-//        PrintLog.printArray(dfsBccPoint.low);
-//        PrintLog.log(dfsBccPoint.isCutPoint);
-        PrintLog.log(dfsBccPoint.bccGroups);
 
+        BccEdge bccEdge = new BccEdge();
+        bccEdge.search(graphList);
+        ArrayList<Map> bccGroups = bccEdge.getBccGroups();
 
+        PrintLog.printArray(bccEdge.low);
+        PrintLog.printArray(bccEdge.dfn);
+        PrintLog.log(bccEdge.cutEdges);
+        System.out.println(bccGroups);
 
+        for (int i = 0 ; i < bccEdge.cutEdges.size();i++){
 
+            Integer[] a = bccEdge.cutEdges.get(i);
+            System.out.println(a[0] + "-" + a[1]);
+
+        }
+
+//        Dfs dfs = new Dfs();
+//        dfs.search(graphList);
+//        PrintLog.log(dfs.leaveTime);
+//        PrintLog.log(dfs.visitTime);
+
+//        BccPoint bccPoint = new BccPoint();
+//        bccPoint.search(graphList);
+//        PrintLog.printArray(bccPoint.dfn);
+//        PrintLog.printArray(bccPoint.low);
+//        PrintLog.log(bccPoint.isCutPoint);
+//        PrintLog.log(bccPoint.pionList);
 
     }
 
