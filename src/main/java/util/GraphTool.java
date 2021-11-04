@@ -4,7 +4,6 @@ import interfaces.AlgNumber;
 import pojo.GraphList;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 public class GraphTool {
@@ -57,13 +56,31 @@ public class GraphTool {
 
             graphList.buildListMap(i,connectedList);
         }
+
         return graphList;
 
     }
 
+    public static GraphList matrixToList(Double[][] graphArray){
 
+        GraphList graphList = new GraphList();
+        for (int i = 0 ; i < graphArray.length;i++){
+            ArrayList<Integer> connectedList = new ArrayList<Integer>();
+            for (int j = 0 ; j < graphArray[i].length;j++){
 
+                if (graphArray[i][j] != Double.POSITIVE_INFINITY){
 
+                    connectedList.add(j);
 
+                }
+
+            }
+
+            graphList.buildListMap(i,connectedList);
+        }
+
+        return graphList;
+
+    }
 
 }

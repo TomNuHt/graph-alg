@@ -9,7 +9,7 @@ import util.SelfMathTool;
 import java.util.ArrayList;
 import java.util.Map;
 
-//求有向图的强连通子图
+//求有向图的强连通分量
 public class Kosaraju {
 
     public void search(GraphList graphList){
