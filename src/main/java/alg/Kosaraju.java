@@ -18,8 +18,6 @@ public class Kosaraju {
         Dfs dfs = new Dfs();
         dfs.search(graphList);
         PrintLog.log(dfs.pionList);
-
-
         //
 
         PrintLog.log("对图G的转置进行DFS搜索");
@@ -41,8 +39,6 @@ public class Kosaraju {
 //
 //
         GraphList graphListT = GraphTool.matrixToList(graphMatrix);
-
-
         DfsKosaraju dfsKosaraju = new DfsKosaraju(leaveTimeList);
         dfsKosaraju.search(graphListT);
     }

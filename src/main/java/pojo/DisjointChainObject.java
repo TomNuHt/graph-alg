@@ -1,5 +1,7 @@
 package pojo;
 
+
+//链表中的对象，head指向所属链表，tail指向后一个对象，链表中的最后一个对象指向空
 public class DisjointChainObject {
 
     DisjointChain head;

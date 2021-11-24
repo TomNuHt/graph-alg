@@ -11,8 +11,6 @@ public class Edge {
         this.u = u;
         this.v = v;
         this.weight =weight;
-
-
     }
 
     public Integer getU() {

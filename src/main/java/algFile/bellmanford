@@ -1,0 +1,18 @@
+bellmanford是单源最短路算法
+初始化：
+    1、对于除了源点s以外的结点v:v.d = 无穷大，v.pai = nill
+    2、s.d = 0
+for i from 1:|G.V|-1
+    对于每一条边：
+      relax
+
+检查有没有经过源结点s的负权圈
+对于每一条边u_v
+    if v.d > u.d + w(u,v)
+    存在负权圈
+
+松弛方法
+    if v.d > u.d + w(u,v)
+        v.d = u.d + w(u,v)
+        v.pai = u
+

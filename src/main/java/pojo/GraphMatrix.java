@@ -4,6 +4,8 @@ package pojo;
 
 import interfaces.AlgNumber;
 
+import java.util.Map;
+
 public class GraphMatrix {
 
 
@@ -28,25 +30,6 @@ public class GraphMatrix {
 
     }
 
-
-//    public void addCore(int row,String line){
-//
-//        String[] lineArray = line.split("\\s+");
-//        for (int i = 0 ; i < lineArray.length;i++){
-//
-//            graphArray[row][i] =Integer.valueOf(lineArray[i]);
-//
-//        }
-//
-//    }
-
-//    public void addAll(String line){
-//
-//        addCore(colCounter,line);
-//        colCounter = colCounter + 1;
-//
-//    }
-//
     public void addConnected(String line){
 
         addConnectedCore(colCounter,line);

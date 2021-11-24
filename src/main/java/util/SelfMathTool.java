@@ -12,7 +12,6 @@ public class SelfMathTool {
 
                 arrayAfterTrans[j][i] = array[i][j];
 
-
             }
 
         }

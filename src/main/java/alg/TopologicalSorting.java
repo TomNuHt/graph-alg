@@ -15,6 +15,7 @@ public class TopologicalSorting {
 
     public void search(GraphList graphList) throws Exception {
 
+
         this.graphList = graphList;
         //根据链表计算各个顶点的入度和出度
         ArrayList<Map> mapArrayList = graphList.returnList();
@@ -104,24 +105,16 @@ public class TopologicalSorting {
         }
 
         if (nextIndex != -1){
-
             tsCore(nextIndex);
-
         }
-
-
-
-
     }
 
 
     public void initial(int vertexSize){
 
         for (int i = 0 ; i < vertexSize;i++){
-
             inDegreeList.add(0);
             outDegreeList.add(0);
-
         }
 
 
