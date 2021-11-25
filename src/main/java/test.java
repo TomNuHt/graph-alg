@@ -1,4 +1,5 @@
 import alg.BellmanFord;
+import alg.DagShortestPath;
 import alg.Kruskal;
 import alg.Prim;
 import pojo.GraphList;
@@ -190,44 +191,88 @@ public class test {
 //        Prim prim = new Prim();
 //        prim.search(graphArray);
 
+//        ArrayList<Integer> list0 = new ArrayList<Integer>();
+//        ArrayList<Integer> list1 = new ArrayList<Integer>();
+//        ArrayList<Integer> list2 = new ArrayList<Integer>();
+//        ArrayList<Integer> list3 = new ArrayList<Integer>();
+//        ArrayList<Integer> list4 = new ArrayList<Integer>();
+//        list0.add(1);
+//        list0.add(4);
+//        list1.add(2);
+//        list1.add(4);
+//        list1.add(3);
+//        list2.add(1);
+//        list3.add(2);
+//        list3.add(0);
+//        list4.add(2);
+//        list4.add(3);
+//        GraphList graphList = new GraphList();
+//        graphList.buildListMap(0,list0);
+//        graphList.buildListMap(1,list1);
+//        graphList.buildListMap(2,list2);
+//        graphList.buildListMap(3,list3);
+//        graphList.buildListMap(4,list4);
+//
+//        Map<String,Double> edgeMap = new HashMap<String, Double>();
+//        edgeMap.put("0_1",6.0);
+//        edgeMap.put("0_4",7.0);
+//        edgeMap.put("1_2",5.0);
+//        edgeMap.put("1_4",8.0);
+//        edgeMap.put("1_3",-4.0);
+//        edgeMap.put("2_1",-2.0);
+//        edgeMap.put("3_2",7.0);
+//        edgeMap.put("3_0",2.0);
+//        edgeMap.put("4_2",-3.0);
+//        edgeMap.put("4_3",9.0);
+
+//        BellmanFord bellmanFord = new BellmanFord();
+//        boolean hasNegCircle = bellmanFord.cal(graphList,edgeMap,0);
+//        PrintLog.log(hasNegCircle);
+//        ArrayList<Double> sd = bellmanFord.sd;
+//        PrintLog.log(sd);
+
+
         ArrayList<Integer> list0 = new ArrayList<Integer>();
         ArrayList<Integer> list1 = new ArrayList<Integer>();
         ArrayList<Integer> list2 = new ArrayList<Integer>();
         ArrayList<Integer> list3 = new ArrayList<Integer>();
         ArrayList<Integer> list4 = new ArrayList<Integer>();
-        list0.add(1);
-        list0.add(4);
-        list1.add(2);
-        list1.add(4);
-        list1.add(3);
+        ArrayList<Integer> list5 = new ArrayList<Integer>();
+
+        list1.add(0);
         list2.add(1);
+        list2.add(0);
         list3.add(2);
+        list3.add(1);
         list3.add(0);
         list4.add(2);
         list4.add(3);
+        list5.add(4);
+        list5.add(3);
+
         GraphList graphList = new GraphList();
         graphList.buildListMap(0,list0);
         graphList.buildListMap(1,list1);
         graphList.buildListMap(2,list2);
         graphList.buildListMap(3,list3);
         graphList.buildListMap(4,list4);
+        graphList.buildListMap(5,list5);
 
         Map<String,Double> edgeMap = new HashMap<String, Double>();
-        edgeMap.put("0_1",6.0);
-        edgeMap.put("0_4",7.0);
-        edgeMap.put("1_2",5.0);
-        edgeMap.put("1_4",8.0);
-        edgeMap.put("1_3",-4.0);
-        edgeMap.put("2_1",-2.0);
+        edgeMap.put("5_4",5.0);
+        edgeMap.put("5_3",3.0);
+        edgeMap.put("4_2",6.0);
+        edgeMap.put("4_3",2.0);
         edgeMap.put("3_2",7.0);
+        edgeMap.put("3_1",4.0);
         edgeMap.put("3_0",2.0);
-        edgeMap.put("4_2",-3.0);
-        edgeMap.put("4_3",9.0);
+        edgeMap.put("2_1",-1.0);
+        edgeMap.put("2_0",1.0);
+        edgeMap.put("1_0",-2.0);
 
-        BellmanFord bellmanFord = new BellmanFord();
-        boolean hasNegCircle = bellmanFord.cal(graphList,edgeMap,0);
-        PrintLog.log(hasNegCircle);
-        ArrayList<Double> sd = bellmanFord.sd;
+        DagShortestPath dagShortestPath = new DagShortestPath();
+        dagShortestPath.cal(graphList,edgeMap,4);
+        ArrayList<Double> sd = dagShortestPath.sd;
         PrintLog.log(sd);
     }
 

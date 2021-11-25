@@ -10,7 +10,7 @@ public class TopologicalSorting {
 
     public ArrayList<Integer> inDegreeList = new ArrayList<Integer>();
     public ArrayList<Integer> outDegreeList = new ArrayList<Integer>();
-    public ArrayList<Integer> queue = new ArrayList<Integer>();
+    public ArrayList<Integer> queue = new ArrayList<Integer>();//拓扑逻辑排序的顺序
     public GraphList graphList;
 
     public void search(GraphList graphList) throws Exception {
@@ -92,6 +92,8 @@ public class TopologicalSorting {
                 break;
             }
         }
+
+        PrintLog.log(inDegreeList);
 
         for (int i = 0 ; i < inDegreeList.size();i++){
 
