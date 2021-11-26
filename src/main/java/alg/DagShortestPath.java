@@ -40,9 +40,6 @@ public class DagShortestPath {
                 relax(queue.get(i),temp,weight);
             }
 
-
-
-
         }
 
     }
