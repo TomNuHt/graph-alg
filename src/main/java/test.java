@@ -1,7 +1,4 @@
-import alg.BellmanFord;
-import alg.DagShortestPath;
-import alg.Kruskal;
-import alg.Prim;
+import alg.*;
 import pojo.GraphList;
 import pojo.GraphMatrix;
 import pojo.GraphMatrixWeight;
@@ -232,23 +229,63 @@ public class test {
 //        PrintLog.log(sd);
 
 
+//        ArrayList<Integer> list0 = new ArrayList<Integer>();
+//        ArrayList<Integer> list1 = new ArrayList<Integer>();
+//        ArrayList<Integer> list2 = new ArrayList<Integer>();
+//        ArrayList<Integer> list3 = new ArrayList<Integer>();
+//        ArrayList<Integer> list4 = new ArrayList<Integer>();
+//        ArrayList<Integer> list5 = new ArrayList<Integer>();
+//
+//        list1.add(0);
+//        list2.add(1);
+//        list2.add(0);
+//        list3.add(2);
+//        list3.add(1);
+//        list3.add(0);
+//        list4.add(2);
+//        list4.add(3);
+//        list5.add(4);
+//        list5.add(3);
+//
+//        GraphList graphList = new GraphList();
+//        graphList.buildListMap(0,list0);
+//        graphList.buildListMap(1,list1);
+//        graphList.buildListMap(2,list2);
+//        graphList.buildListMap(3,list3);
+//        graphList.buildListMap(4,list4);
+//        graphList.buildListMap(5,list5);
+//
+//        Map<String,Double> edgeMap = new HashMap<String, Double>();
+//        edgeMap.put("5_4",5.0);
+//        edgeMap.put("5_3",3.0);
+//        edgeMap.put("4_2",6.0);
+//        edgeMap.put("4_3",2.0);
+//        edgeMap.put("3_2",7.0);
+//        edgeMap.put("3_1",4.0);
+//        edgeMap.put("3_0",2.0);
+//        edgeMap.put("2_1",-1.0);
+//        edgeMap.put("2_0",1.0);
+//        edgeMap.put("1_0",-2.0);
+
+
+
         ArrayList<Integer> list0 = new ArrayList<Integer>();
         ArrayList<Integer> list1 = new ArrayList<Integer>();
         ArrayList<Integer> list2 = new ArrayList<Integer>();
         ArrayList<Integer> list3 = new ArrayList<Integer>();
         ArrayList<Integer> list4 = new ArrayList<Integer>();
-        ArrayList<Integer> list5 = new ArrayList<Integer>();
 
-        list1.add(0);
-        list2.add(1);
-        list2.add(0);
+        list0.add(1);
+        list0.add(4);
+        list1.add(4);
+        list1.add(2);
+        list2.add(3);
         list3.add(2);
-        list3.add(1);
         list3.add(0);
         list4.add(2);
         list4.add(3);
-        list5.add(4);
-        list5.add(3);
+        list4.add(1);
+
 
         GraphList graphList = new GraphList();
         graphList.buildListMap(0,list0);
@@ -256,23 +293,23 @@ public class test {
         graphList.buildListMap(2,list2);
         graphList.buildListMap(3,list3);
         graphList.buildListMap(4,list4);
-        graphList.buildListMap(5,list5);
 
         Map<String,Double> edgeMap = new HashMap<String, Double>();
-        edgeMap.put("5_4",5.0);
-        edgeMap.put("5_3",3.0);
-        edgeMap.put("4_2",6.0);
-        edgeMap.put("4_3",2.0);
-        edgeMap.put("3_2",7.0);
-        edgeMap.put("3_1",4.0);
-        edgeMap.put("3_0",2.0);
-        edgeMap.put("2_1",-1.0);
-        edgeMap.put("2_0",1.0);
-        edgeMap.put("1_0",-2.0);
 
-        DagShortestPath dagShortestPath = new DagShortestPath();
-        dagShortestPath.cal(graphList,edgeMap,4);
-        ArrayList<Double> sd = dagShortestPath.sd;
+        edgeMap.put("4_1",3.0);
+        edgeMap.put("4_2",9.0);
+        edgeMap.put("4_3",2.0);
+        edgeMap.put("3_2",6.0);
+        edgeMap.put("3_0",7.0);
+        edgeMap.put("2_3",4.0);
+        edgeMap.put("1_2",1.0);
+        edgeMap.put("1_4",2.0);
+        edgeMap.put("0_4",5.0);
+        edgeMap.put("0_1",10.0);
+
+        Dijkstra dijkstra = new Dijkstra();
+        dijkstra.cal(graphList,edgeMap,0);
+        ArrayList<Double> sd = dijkstra.sd;
         PrintLog.log(sd);
     }
 

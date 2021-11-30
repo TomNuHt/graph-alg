@@ -20,37 +20,28 @@ public class DagShortestPath {
         TopologicalSorting topologicalSorting = new TopologicalSorting();
         topologicalSorting.search(graphList);
         ArrayList<Integer> queue = topologicalSorting.queue;
-//        ArrayList<Map> graphLists = graphList.returnList();
         Map<Integer,ArrayList<Integer>> graphMap = graphList.returnMap();
         for (int i = 0 ; i < queue.size();i++){
-
             PrintLog.log("========" +queue.get(i) + "+++++++");
             if (i < queue.indexOf(sourceIndex)){
 
                 continue;
 
             }
-
             ArrayList<Integer> vertexIndexListConnectedTo = graphMap.get(queue.get(i));
             for (int j = 0 ; j < vertexIndexListConnectedTo.size();j++){
-
                 int temp = vertexIndexListConnectedTo.get(j);
                 PrintLog.log(queue.get(i) + "_" + temp);
                 double weight = edgeMap.get(queue.get(i)+ "_" + temp);
                 relax(queue.get(i),temp,weight);
             }
-
         }
-
     }
-
     public void relax(int u,int v,double weight){
 
         if (sd.get(v) > (sd.get(u) + weight)){
-
             sd.set(v,sd.get(u) + weight);
             pai.set(v,u);
-
         }
     }
 
