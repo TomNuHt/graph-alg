@@ -42,12 +42,7 @@ public class Dijkstra {
                 double weight = edgeMap.get(u+"_"+v);
                 relax(u,v,weight);
             }
-
-
-
         }
-
-
     }
 
     //找到和队列相连的最短那个点
