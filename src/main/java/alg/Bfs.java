@@ -31,14 +31,14 @@ public class Bfs {
         //初始化
         int pointSize = this.graphList.returnList().size();
 
-        PrintLog.log(pointSize);
+        PrintLog.log("结点数量" + pointSize);
 
         initialGraph(pointSize);
 
         //挑选某个节点为根节点
         int firstVertex = random.nextInt(pointSize);
 
-        PrintLog.log(firstVertex);
+        PrintLog.log("第一个结点编号：" + firstVertex);
 
         //链表
         ArrayList<Map> mapArrayList = this.graphList.returnList();
@@ -54,12 +54,10 @@ public class Bfs {
         disList.set(firstVertexIndex,0.0);
         queue.add(firstVertexIndex);
 
-        PrintLog.log(graphList.returnList().size());
-
+//        PrintLog.log(graphList.returnList().size());
         bfsCore();
-        System.out.println(pionList);
-        PrintLog.log(colorList);
-
+//        System.out.println(pionList);
+//        PrintLog.log(colorList);
 
         while (colorList.contains(AlgColor.ALG_COLOR_WHITE)){
 
@@ -73,7 +71,7 @@ public class Bfs {
 
         }
 
-        PrintLog.log(pionList);
+        PrintLog.log("打印搜索树：" + pionList);
 
 
 
@@ -113,18 +111,14 @@ public class Bfs {
 
             }
 
-
         }
 
-
     }
-
 
     //初始化
     public void initialGraph(int pointSize){
 
         for (int i = 0; i < pointSize; i++){
-
             colorList.add(AlgColor.ALG_COLOR_WHITE);
             disList.add(Double.POSITIVE_INFINITY);
             pionList.add("-1");

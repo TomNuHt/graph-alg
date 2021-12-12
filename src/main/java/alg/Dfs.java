@@ -19,33 +19,27 @@ public class Dfs {
     public ArrayList<Double> disList = new ArrayList<Double>();
     //每个节点的父亲节点
     public ArrayList<String> pionList = new ArrayList<String>();
-
     //每个顶点被发现的时间
     public ArrayList<Integer> visitTime = new ArrayList<Integer>();
-
     //每个顶点离开的时间
     public ArrayList<Integer> leaveTime = new ArrayList<Integer>();
     int time = 0;
 
-
-
     public void search(GraphList graphList){
 
         this.graphList = graphList;
-
         int pointSize = this.graphList.returnList().size();
         initialGraph(pointSize);
-
         for (int i = 0 ; i < pointSize;i++){
 
             if (colorList.get(i).equals(AlgColor.ALG_COLOR_WHITE)){
-
                 PrintLog.log("第" + i + "个点为白色，开始搜索");
                 dfsCore(i);
-
             }
 
         }
+
+        PrintLog.log("深度优先搜索树：" + pionList);
     }
 
     public void dfsCore(int i){

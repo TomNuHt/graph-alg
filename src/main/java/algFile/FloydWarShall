@@ -1,0 +1,13 @@
+
+D0 = w
+pai 0 = w
+for k=1 to n:
+    初始化一个矩阵dk
+    for i=1 to n:
+        for j=1 to n:
+            dij k = min {dij k-1,(dik k-1 + dkj k-1)}
+                if dij k-1 > (dik k-1 + dkj k-1)
+                     pai ij k = pai kj k - 1
+                else
+                     pai ij k = pai ij k-1
+

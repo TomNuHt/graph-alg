@@ -26,6 +26,24 @@ public class PrintLog {
 
     }
 
+
+    public static void printMatrix(String[][] matrix){
+
+        for (int i = 0 ; i < matrix.length;i++){
+
+            String temp = "";
+
+            for (int j = 0 ; j < matrix[0].length;j++){
+
+                temp = temp + " " + matrix[i][j];
+
+            }
+            System.out.println(temp);
+        }
+
+    }
+
+
     public static void printMatrix(Double[][] matrix){
 
         for (int i = 0 ; i < matrix.length;i++){

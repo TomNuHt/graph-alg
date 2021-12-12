@@ -1,11 +1,6 @@
 import alg.*;
-import pojo.Edge;
-import pojo.GraphList;
-import pojo.GraphMatrix;
 import pojo.GraphMatrixWeight;
-import util.PrintLog;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +8,7 @@ public class test {
 
     public static void main(String[] args) throws Exception {
 
-        //buildgraph
+//        buildgraph
 //        ArrayList<Integer> list0 = new ArrayList<Integer>();
 //        ArrayList<Integer> list1 = new ArrayList<Integer>();
 //        ArrayList<Integer> list2 = new ArrayList<Integer>();
@@ -22,47 +17,15 @@ public class test {
 //        ArrayList<Integer> list5 = new ArrayList<Integer>();
 //        ArrayList<Integer> list6 = new ArrayList<Integer>();
 //        ArrayList<Integer> list7 = new ArrayList<Integer>();
-
-        //g1
-//        list0.add(1);
+//
 //        list1.add(0);
 //        list1.add(2);
-//        list2.add(1);
-//        list2.add(3);
-//
-//        list3.add(2);
-//        list3.add(4);
-//        list3.add(5);
-//
-//        list4.add(3);
-//        list4.add(5);
-//        list4.add(6);
-//
-//        list5.add(3);
-//        list5.add(4);
-//        list5.add(6);
-//        list5.add(7);
-//
-//        list6.add(4);
-//        list6.add(5);
-//        list6.add(7);
-//
-//        list7.add(5);
-//        list7.add(6);
-
-        //g2
-//        list1.add(0);
-//        list1.add(2);
-//
 //        list2.add(4);
-//
 //        list3.add(0);
 //        list3.add(2);
-//
 //        list4.add(5);
 //        list6.add(5);
 //        list7.add(5);
-//
 //
 //        GraphList graphList = new GraphList();
 //        graphList.buildListMap(0,list0);
@@ -73,7 +36,7 @@ public class test {
 //        graphList.buildListMap(5,list5);
 //        graphList.buildListMap(6,list6);
 //        graphList.buildListMap(7,list7);
-
+//
 //        Bfs bfs = new Bfs();
 //        bfs.search(graphList);
 //        Dfs dfs = new Dfs();
@@ -97,7 +60,7 @@ public class test {
 //        GraphList graphList = GraphTool.matrixToList(array);
 //        Kosaraju kosaraju = new Kosaraju();
 //        kosaraju.search(graphList);
-
+//
 //        GraphMatrix graphMatrix = new GraphMatrix(12,12);
 //        graphMatrix.addConnected("1 8 11");
 //        graphMatrix.addConnected("0 2 4");
@@ -131,6 +94,9 @@ public class test {
 //
 //        BccEdge bccEdge = new BccEdge();
 //        bccEdge.search(graphList);
+
+//        BccPoint bccPoint = new BccPoint();
+//        bccPoint.search(graphList);
 //        ArrayList<Map> bccGroups = bccEdge.getBccGroups();
 //
 //        PrintLog.printArray(bccEdge.low);
@@ -156,7 +122,7 @@ public class test {
 //        PrintLog.printArray(bccPoint.low);
 //        PrintLog.log(bccPoint.isCutPoint);
 //        PrintLog.log(bccPoint.pionList);
-
+//
 //        GraphMatrixWeight graphMatrix = new GraphMatrixWeight(9,9);
 //        graphMatrix.addConnected("1 7");
 //        graphMatrix.addConnected("0 2 7");
@@ -167,7 +133,7 @@ public class test {
 //        graphMatrix.addConnected("5 7");
 //        graphMatrix.addConnected("6 8 1 0");
 //        graphMatrix.addConnected("2 7");
-//
+////
 //        Map<String,Double> edgeMap = new HashMap<String, Double>();
 //        edgeMap.put("0_1",4.0);
 //        edgeMap.put("0_7",8.0);
@@ -312,13 +278,14 @@ public class test {
 //        dijkstra.cal(graphList,edgeMap,0);
 //        ArrayList<Double> sd = dijkstra.sd;
 //        PrintLog.log(sd);
+
+
         GraphMatrixWeight graphMatrix = new GraphMatrixWeight(5,5);
         graphMatrix.addConnected("1 2 4");
         graphMatrix.addConnected("3 4");
         graphMatrix.addConnected("1");
         graphMatrix.addConnected("0 2");
         graphMatrix.addConnected("3");
-
         Map<String,Double> edgeMap = new HashMap();
         edgeMap.put("0_1",3.0);
         edgeMap.put("0_2",8.0);
@@ -330,14 +297,10 @@ public class test {
         edgeMap.put("3_2",-5.0);
         edgeMap.put("4_3",6.0);
         Double[][] graphArray = graphMatrix.importEdgeMap(edgeMap);
-
-        ExtendShortestPaths extendShortestPaths = new ExtendShortestPaths();
-//        extendShortestPaths.cal(graphArray);
-        extendShortestPaths.calUpgared(graphArray);
-
-
-
-
+//        ExtendShortestPaths extendShortestPaths = new ExtendShortestPaths();
+//        extendShortestPaths.calUpgared(graphArray);
+        FloydWarShall floydWarShall = new FloydWarShall();
+        floydWarShall.cal(graphArray);
     }
 
 }

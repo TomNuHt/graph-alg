@@ -101,9 +101,18 @@ public class BccPoint extends Dfs{
                 //已经访问过的点有两种可能，第一种i是indeJ的父辈，第二种，i是indexJ的子孙
                 PrintLog.log("第 " + indexJ + " 个点已经被访问过");
                 PrintLog.log("i is : " + i + " ,indexJ is: " + indexJ);
-                int iFather = Integer.valueOf(pionList.get(i));
+                Boolean isFather = true;
+                if (pionList.get(i).equals("nil")){
 
-                if (iFather != indexJ ){
+                    isFather = false;
+
+                }else if (Integer.valueOf(pionList.get(i)) != indexJ){
+
+                    isFather = false;
+
+                }
+
+                if (!isFather ){
 //                    PrintLog.log("第 " + indexJ + " 个点不是第 " + i + " 点的父节点，因此 ：" + i + "-" + indexJ + " 是一条返祖边" );
                     PrintLog.log("调整第 " + i + " 个的low值");
                     PrintLog.log("low[" + i + "] 为：" + low[i] + " dfn[" + indexJ + "]为：" + dfn[indexJ]);
