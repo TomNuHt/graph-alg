@@ -5,7 +5,6 @@ import interfaces.AlgNumber;
 import pojo.GraphList;
 import util.GraphTool;
 import util.PrintLog;
-
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -14,7 +13,6 @@ public class BccEdge extends Dfs{
     public Integer[] dfn;
     public Integer[] low;
     public ArrayList<Integer[]> cutEdges = new ArrayList<Integer[]>();
-
     public ArrayList<Map> getBccGroups(){
 
         Integer[][] matrix = GraphTool.listToMatrix(graphList);
@@ -30,7 +28,6 @@ public class BccEdge extends Dfs{
         return graphList.returnList();
 
     }
-
 
     @Override
     public void dfsCore(int i){
@@ -76,16 +73,11 @@ public class BccEdge extends Dfs{
                 PrintLog.log("第" + indexJ + "个点已被访问过");
                 PrintLog.log(pionList);
                 PrintLog.log(i);
-
                 if (pionList.get(i).equals("nil")) {
-
                     low[i] = Math.min(low[i],dfn[indexJ]);
-
                 }
                 else if (Integer.valueOf(pionList.get(i)) != indexJ){
-
                     low[i] = Math.min(low[i],dfn[indexJ]);
-
                 }
 
             }
@@ -105,9 +97,7 @@ public class BccEdge extends Dfs{
 
         dfn = new Integer[pointSize];
         low = new Integer[pointSize];
-
         for (int i = 0; i < pointSize; i++){
-
             colorList.add(AlgColor.ALG_COLOR_WHITE);
             disList.add(Double.POSITIVE_INFINITY);
             pionList.add("nil");
@@ -115,7 +105,6 @@ public class BccEdge extends Dfs{
             leaveTime.add(0);
             dfn[i] = 0;
             low[i] = 0;
-
         }
     }
 }

@@ -10,7 +10,6 @@ public class GraphMatrix {
 
 
 
-//    public Matrix graphMatrix;
     public Integer[][] graphArray;
     public int colCounter = 0 ;
 

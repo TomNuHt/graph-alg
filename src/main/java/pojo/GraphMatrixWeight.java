@@ -15,19 +15,6 @@ public class GraphMatrixWeight extends GraphMatrix{
         initial();
     }
 
-//    public Double[][] reviseWarray(Double[][] graphArray){
-//
-//        int arrayLength = graphArray.length;
-//        for (int i = 0 ; i < arrayLength;i++){
-//
-//            graphArray[i][i] = 0.0;
-//
-//        }
-//
-//        return graphArray;
-//    }
-
-
     //
     public Double[][] importEdgeMap(Map<String,Double> edgeMap){
 
@@ -39,7 +26,6 @@ public class GraphMatrixWeight extends GraphMatrix{
             int v = Integer.valueOf(key.split("_")[1]);
             double weight = edgeMap.get(key);
             graphArrayWeight[u][v] = weight;
-//            graphArrayWeight[v][u] = weight;
         }
         return graphArrayWeight;
     }

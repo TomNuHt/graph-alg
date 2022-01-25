@@ -5,6 +5,17 @@ public class Edge {
     Integer u;
     Integer v;
     Double weight;
+    Double capacity;
+
+    public Edge(Integer u,Integer v,Double weight,Double capacity){
+
+        this.u = u;
+        this.v = v;
+        this.weight =weight;
+        this.capacity = capacity;
+
+    }
+
 
     public Edge(Integer u,Integer v,Double weight){
 
@@ -35,5 +46,13 @@ public class Edge {
 
     public void setWeight(Double weight) {
         this.weight = weight;
+    }
+
+    public Double getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(Double capacity) {
+        this.capacity = capacity;
     }
 }

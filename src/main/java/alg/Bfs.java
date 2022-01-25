@@ -54,10 +54,7 @@ public class Bfs {
         disList.set(firstVertexIndex,0.0);
         queue.add(firstVertexIndex);
 
-//        PrintLog.log(graphList.returnList().size());
         bfsCore();
-//        System.out.println(pionList);
-//        PrintLog.log(colorList);
 
         while (colorList.contains(AlgColor.ALG_COLOR_WHITE)){
 
@@ -70,11 +67,7 @@ public class Bfs {
             bfsCore();
 
         }
-
         PrintLog.log("打印搜索树：" + pionList);
-
-
-
     }
 
     public void bfsCore(){
