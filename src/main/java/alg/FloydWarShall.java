@@ -1,11 +1,8 @@
 package alg;
 
 import interfaces.AlgNumber;
-import pojo.GraphMatrix;
 import util.PrintLog;
-
 import java.util.ArrayList;
-import java.util.Random;
 
 public class FloydWarShall {
 
@@ -14,7 +11,6 @@ public class FloydWarShall {
 
 
         graphArray = reviseWarray(graphArray);
-
         PrintLog.printMatrix(graphArray);
 
         int graphSize = graphArray.length;

@@ -1,4 +1,5 @@
 import alg.*;
+import pojo.GraphMatrix;
 import pojo.GraphMatrixWeight;
 
 import java.util.HashMap;
@@ -280,27 +281,59 @@ public class test {
 //        PrintLog.log(sd);
 
 
-        GraphMatrixWeight graphMatrix = new GraphMatrixWeight(5,5);
-        graphMatrix.addConnected("1 2 4");
-        graphMatrix.addConnected("3 4");
-        graphMatrix.addConnected("1");
-        graphMatrix.addConnected("0 2");
-        graphMatrix.addConnected("3");
-        Map<String,Double> edgeMap = new HashMap();
-        edgeMap.put("0_1",3.0);
-        edgeMap.put("0_2",8.0);
-        edgeMap.put("0_4",-4.0);
-        edgeMap.put("1_3",1.0);
-        edgeMap.put("1_4",7.0);
-        edgeMap.put("2_1",4.0);
-        edgeMap.put("3_0",2.0);
-        edgeMap.put("3_2",-5.0);
-        edgeMap.put("4_3",6.0);
-        Double[][] graphArray = graphMatrix.importEdgeMap(edgeMap);
-//        ExtendShortestPaths extendShortestPaths = new ExtendShortestPaths();
-//        extendShortestPaths.calUpgared(graphArray);
-        FloydWarShall floydWarShall = new FloydWarShall();
-        floydWarShall.cal(graphArray);
+//        GraphMatrixWeight graphMatrix = new GraphMatrixWeight(5,5);
+//        graphMatrix.addConnected("1 2 4");
+//        graphMatrix.addConnected("3 4");
+//        graphMatrix.addConnected("1");
+//        graphMatrix.addConnected("0 2");
+//        graphMatrix.addConnected("3");
+//        Map<String,Double> edgeMap = new HashMap();
+//        edgeMap.put("0_1",3.0);
+//        edgeMap.put("0_2",8.0);
+//        edgeMap.put("0_4",-4.0);
+//        edgeMap.put("1_3",1.0);
+//        edgeMap.put("1_4",7.0);
+//        edgeMap.put("2_1",4.0);
+//        edgeMap.put("3_0",2.0);
+//        edgeMap.put("3_2",-5.0);
+//        edgeMap.put("4_3",6.0);
+//        Double[][] graphArray = graphMatrix.importEdgeMap(edgeMap);
+//        FloydWarShall floydWarShall = new FloydWarShall();
+//        floydWarShall.cal(graphArray);
+
+
+        GraphMatrixWeight graphMatrixWeight = new GraphMatrixWeight(6,6);
+        graphMatrixWeight.addConnectedCore(0,"1 2");
+        graphMatrixWeight.addConnectedCore(1,"3");
+        graphMatrixWeight.addConnectedCore(2,"1 4");
+        graphMatrixWeight.addConnectedCore(3,"2 5");
+        graphMatrixWeight.addConnectedCore(4,"3 5");
+        Map<String,Double> edgeCapacityMap = new HashMap<String, Double>();
+        edgeCapacityMap.put("0_1",16.0);
+        edgeCapacityMap.put("0_2",13.0);
+        edgeCapacityMap.put("1_3",12.0);
+        edgeCapacityMap.put("2_1",4.0);
+        edgeCapacityMap.put("2_4",14.0);
+        edgeCapacityMap.put("3_2",9.0);
+        edgeCapacityMap.put("3_5",20.0);
+        edgeCapacityMap.put("4_3",7.0);
+        edgeCapacityMap.put("4_5",4.0);
+
+        Map<String,Double> edgeMap = new HashMap<String, Double>();
+        edgeMap.put("0_1",0.0);
+        edgeMap.put("0_2",0.0);
+        edgeMap.put("1_3",0.0);
+        edgeMap.put("2_1",0.0);
+        edgeMap.put("2_4",0.0);
+        edgeMap.put("3_2",0.0);
+        edgeMap.put("3_5",0.0);
+        edgeMap.put("4_3",0.0);
+        edgeMap.put("4_5",0.0);
+
+        Double[][] graphArray = graphMatrixWeight.importEdgeMap(edgeMap);
+        FordFulkson fordFulkson = new FordFulkson();
+        fordFulkson.cal(graphArray,edgeCapacityMap,0,5);
+
     }
 
 }

@@ -4,6 +4,8 @@ import interfaces.AlgNumber;
 import pojo.GraphList;
 import util.GraphTool;
 import util.PrintLog;
+
+import javax.xml.transform.Source;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -13,12 +15,13 @@ public class FordFulkson {
         //获取残存网络
         Double[][] graphArrayRemain = getRemainNetWork(graphArray,edgeCapacityMap);
         //把残存网络转成graphList
-        GraphList graphListRemain = GraphTool.matrixToList(graphArrayRemain);
+        GraphList graphListRemain = GraphTool.matrixToListWeight(graphArrayRemain);
         while (true){
-            ArrayList<String> paths = new ArrayList<String>();
+            ArrayList<String> paths;
             try {
                 //获取残存网络的增广路径，因为只关注联通性，所以权值的含义可以忽略
                 paths = getArgumentPath(graphListRemain,sourceIndex,targetIndex);
+//                System.out.println(paths);
             }
             catch (Exception e){
                 break;
@@ -28,21 +31,51 @@ public class FordFulkson {
             //获取残存网络
             graphArrayRemain = getRemainNetWork(graphArray,edgeCapacityMap);
             //把残存网络转成graphList
-            graphListRemain = GraphTool.matrixToList(graphArrayRemain);
+            graphListRemain = GraphTool.matrixToListWeight(graphArrayRemain);
         }
+        PrintLog.log("output graphArray:");
         PrintLog.printMatrix(graphArray);
+        PrintLog.log("max flow value");
+        PrintLog.log(getMaxFlowValue(graphArray,sourceIndex));
         return graphArray;
+    }
+
+    public double getMaxFlowValue(Double[][] graphArray, int sourceIndex){
+
+        double outFlow = 0.0;
+        double inFlow = 0.0;
+        int matrixSize = graphArray.length;
+        for (int i = 0 ; i < matrixSize;i++){
+
+            if (!graphArray[sourceIndex][i].equals(AlgNumber.ALG_DOUBLE_INFINITE)){
+                outFlow += graphArray[sourceIndex][i];
+            }
+        }
+
+        for (int i = 0 ; i < matrixSize;i++){
+
+            if (!graphArray[i][sourceIndex].equals(AlgNumber.ALG_DOUBLE_INFINITE)){
+                inFlow += graphArray[i][sourceIndex];
+            }
+        }
+        return outFlow - inFlow;
+
+
     }
 
     //根据增广路径修改graphArray
     public Double[][] addFlow(ArrayList<String> paths,Double[][] graphArray,Double[][] graphArrayRemain){
 
         ArrayList<String> edgeNameList = new ArrayList<String>();
+
+        PrintLog.log("增广路径：" + paths);
+
         String firstBefore = paths.get(0);
         //找到路径上的所有边
-        for (int i = 0 ; i < paths.size();i++){
+        for (int i = 1 ; i < paths.size();i++){
             String thisIndex = paths.get(i);
-            edgeNameList.add(firstBefore + "_" + thisIndex);
+//            edgeNameList.add(firstBefore + "_" + thisIndex);
+            edgeNameList.add(thisIndex + "_" + firstBefore);
             firstBefore = thisIndex;
         }
         double minFlow = AlgNumber.ALG_DOUBLE_INFINITE;
@@ -58,23 +91,44 @@ public class FordFulkson {
             }
         }
 
+        PrintLog.log("minFlow " + minFlow);
+        PrintLog.log("edgeNameList" + edgeNameList);
         //修改原graphArray
+        PrintLog.log("开始修改graphArray:");
+        PrintLog.log("修改前:");
+        PrintLog.printMatrix(graphArray);
         for (int i=0 ; i < edgeNameList.size();i++){
             String edgeName = edgeNameList.get(i);
             String[] uvString = edgeName.split("_");
             int uIndex = Integer.parseInt(uvString[0]);
             int vIndex = Integer.parseInt(uvString[1]);
-            graphArray[uIndex][vIndex]  += minFlow;
+
+            //如果该边在原图中不存在那么就是减小流
+            if (graphArray[uIndex][vIndex].equals(AlgNumber.ALG_DOUBLE_INFINITE)){
+
+                graphArray[vIndex][uIndex] -= minFlow;
+
+            }
+            else {
+
+                graphArray[uIndex][vIndex]  += minFlow;
+
+            }
+
         }
+        PrintLog.log("修改后:");
+//        PrintLog.logKey("测试");
+        PrintLog.printMatrix(graphArray);
         return graphArray;
     }
 
     //获取增广路径
     public ArrayList<String> getArgumentPath(GraphList graphList,int sourceIndex,int targetIndex) throws Exception {
         DfsForFordFulkson dfsForFordFulkson = new DfsForFordFulkson();
-        ArrayList<String> paths = new ArrayList<String>();
+        ArrayList<String> paths;
         try {
             paths = dfsForFordFulkson.search(graphList,sourceIndex,targetIndex);
+            System.out.println(paths);
         }
         catch(Exception e){
             throw e;
@@ -83,6 +137,10 @@ public class FordFulkson {
     }
 
     public Double[][] getRemainNetWork(Double[][] graphArray, Map<String,Double> edgeCapacityMap){
+
+        PrintLog.log("开始获取残存网络");
+//        PrintLog.log("原网络");
+//        PrintLog.printMatrix(graphArray);
         Double[][] remainNetWork = getEmptyGraphArray(graphArray);
         for ( int i = 0 ; i < graphArray.length;i++){
 
@@ -91,7 +149,10 @@ public class FordFulkson {
                 if (volume.equals(AlgNumber.ALG_DOUBLE_INFINITE)){
                     continue;
                 }
+
                 String edgeName = i + "_" + j;
+                PrintLog.log(edgeName);
+                PrintLog.log(volume);
                 Double capacity = edgeCapacityMap.get(edgeName);
                 Double weightF = capacity - volume;
                 if (!weightF.equals(0.0)){
@@ -102,6 +163,10 @@ public class FordFulkson {
                 }
             }
         }
+
+        PrintLog.log("残存网络：");
+        PrintLog.printMatrix(remainNetWork);
+        PrintLog.log("残存网络计算完毕");
         return remainNetWork;
     }
 
@@ -113,7 +178,7 @@ public class FordFulkson {
                 graphArrayNew[i][j] = AlgNumber.ALG_DOUBLE_INFINITE;
             }
         }
-        return graphArray;
+        return graphArrayNew;
     }
 
 }

@@ -10,6 +10,12 @@ public class PrintLog {
 
     }
 
+    public static void logKey(Object object){
+
+        System.out.println("\033[43;34;4m" + object + "\033[0m");
+
+    }
+
     public static void printMatrix(Integer[][] matrix){
 
         for (int i = 0 ; i < matrix.length;i++){

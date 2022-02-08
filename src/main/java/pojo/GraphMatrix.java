@@ -33,22 +33,17 @@ public class GraphMatrix {
 
         addConnectedCore(colCounter,line);
         colCounter = colCounter + 1;
-
-
     }
 
     public void addConnectedCore(int row,String line){
-
         String[] lineArray = line.split("\\s+");
         for (int i = 0 ; i < lineArray.length;i++){
             int value =Integer.valueOf(lineArray[i]);
             graphArray[row][value] = 1;
         }
-
-
-
-
     }
+
+
 
     public void initial(){
 

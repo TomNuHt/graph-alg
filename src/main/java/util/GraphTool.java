@@ -67,20 +67,28 @@ public class GraphTool {
         for (int i = 0 ; i < graphArray.length;i++){
             ArrayList<Integer> connectedList = new ArrayList<Integer>();
             for (int j = 0 ; j < graphArray[i].length;j++){
-
                 if (graphArray[i][j] != Double.POSITIVE_INFINITY){
-
                     connectedList.add(j);
-
                 }
-
             }
-
             graphList.buildListMap(i,connectedList);
         }
-
         return graphList;
+    }
 
+    public static GraphList matrixToListWeight(Double[][] graphArray){
+
+        GraphList graphList = new GraphList();
+        for (int i = 0 ; i < graphArray.length;i++){
+            ArrayList<Integer> connectedList = new ArrayList<Integer>();
+            for (int j = 0 ; j < graphArray[i].length;j++){
+                if (graphArray[i][j] != AlgNumber.ALG_DOUBLE_INFINITE){
+                    connectedList.add(j);
+                }
+            }
+            graphList.buildListMap(i,connectedList);
+        }
+        return graphList;
     }
 
 }
