@@ -12,23 +12,23 @@ public class BccPoint extends Dfs{
     public Integer[] dfn;
     public Integer[] low;
     public ArrayList<Integer> queue = new ArrayList<Integer>();
-    public ArrayList<Map> bccGroups = new ArrayList<Map>();
+    public ArrayList<Map> bccGroups = new ArrayList<Map>();//联通分量
     public ArrayList<Boolean> isCutPoint = new ArrayList<Boolean>();
 
     @Override
     public void dfsCore(int i){
 
         queue.add(i);//进队列
-        PrintLog.log("第 " + i + " 个点进队列" );
+        PrintLog.log("add point:" + i + " into queue" );
         time = time + 1;
-        PrintLog.log("时间：" + time);
+        PrintLog.log("time：" + time);
         dfn[i] = time;
         low[i] = time;
-        PrintLog.log("第 " + i + " 个点的初始dfn值为：" + dfn[i]);
-        PrintLog.log("第 " + i + " 个点的初始low值为：" + low[i]);
+        PrintLog.log("set dfn of point:" + i + " to " + dfn[i]);
+        PrintLog.log("set low of point: " + i + " to " + low[i]);
         visitTime.set(i,time);
         colorList.set(i, AlgColor.ALG_COLOR_GRAY);
-        PrintLog.log("将第 " +  i + " 个点的颜色设置为灰色");
+        PrintLog.log("set color of point:" +  i + " to gray");
 
         //链表
         ArrayList<Map> mapArrayList = this.graphList.returnList();
@@ -38,38 +38,38 @@ public class BccPoint extends Dfs{
 
         //与i相连的节点
         ArrayList<Integer> connectedList = (ArrayList<Integer>)map.get("connectedList");
-        PrintLog.log("与第 " + i + " 个点相连的点有： " + connectedList);
+        PrintLog.log("adj of point:" + i + " are " + connectedList);
 
         for (int j = 0 ; j < connectedList.size();j++){
 
             int indexJ = connectedList.get(j);
-            PrintLog.log("搜索第 " + indexJ + " 个点");
+            PrintLog.log("search point:" + indexJ);
 
             if (colorList.get(indexJ).equals(AlgColor.ALG_COLOR_WHITE)){//indexJ未被访问过
-                PrintLog.log(indexJ + " 未被访问过");
+                PrintLog.log(indexJ + " is never visited");
                 pionList.set(indexJ,String.valueOf(i));
-                PrintLog.log("将 " + indexJ + " 点的父亲设置为： " + i);
-                PrintLog.log("对 " + indexJ + " 进行dfs搜索");
+                PrintLog.log("set father node of point:" + indexJ + " to point:" + i);
+                PrintLog.log("dfs search point:" + indexJ);
                 dfsCore(indexJ);
-                PrintLog.log("第 " + indexJ + " 个点的dfs搜索完毕");
-                PrintLog.log("开始调整第 " + i + " 个点的low值：");
-                PrintLog.log("low[" + i + "] 为：" + low[i] + " low[" + indexJ + "]为：" + low[indexJ]);
+                PrintLog.log("point:" + indexJ + " is searched");
+                PrintLog.log("begin to revise the low of point:" + i);
+                PrintLog.log("low[" + i + "] is：" + low[i] + " low[" + indexJ + "] is：" + low[indexJ]);
                 low[i] = Math.min(low[i],low[indexJ]);
-                PrintLog.log("计算后 low[" +i + "]");
+                PrintLog.log("after calculate low[" +i + "]:" + low[i]);
 
                 //根节点为割点的充要条件是根节点有两个子节点
                 if(i == 0 && connectedList.size() < 2){
-                    PrintLog.log(i + " 为根节点，且 " + i + " 的儿子节点数量小于2，因此不进行后续的割点判断");
+                    PrintLog.log("point:" + i + " is root,and the number of the son of point:" + i + " is little than two,so point:" + i + " is not a cut point");
                     continue;
                 }
 
                 if(low[indexJ]>=dfn[i] && (Integer.valueOf(pionList.get(indexJ))==i)){
 
-                    PrintLog.log(  indexJ + "的父结点为" + i);
-                    PrintLog.log("《《《《《《《发现割点" + i);
+                    PrintLog.log(  "the father point of point:" + indexJ + " is point:" + i);
+                    PrintLog.log("find cut point:" + i);
                     ArrayList<Integer> arrayList = new ArrayList<Integer>();
-                    PrintLog.log("开始计算连通分量：");
-                    PrintLog.log("从栈顶删除元素，直到: " + indexJ);
+                    PrintLog.log("begin to calculate connected component：");
+                    PrintLog.log("begin to delete the object on the top of stack until point:" + indexJ);
                     for (int k = queue.size() - 1; k >=0; k--){
 
                         if (queue.get(k) == indexJ){
@@ -80,14 +80,15 @@ public class BccPoint extends Dfs{
                         }
 
                         arrayList.add(queue.get(k));
-                        PrintLog.log("属于" + i + "的连通分量添加：" + queue.get(k));
+                        PrintLog.log("the connected component of cut point:" + i + " add point:" + queue.get(k));
+//                        PrintLog.log("属于" + i + "的连通分量添加：" + queue.get(k));
                         queue.remove(k);
-                        PrintLog.log("栈中删除" + k);
-                        PrintLog.log("删除后的栈变为：" + queue);
+                        PrintLog.log("delete point:" + k + " from stack");
+                        PrintLog.log("after deleted,the stack is：" + queue);
 
                     }
 
-                    PrintLog.log("属于" + i + "的连通分量添加完毕，分量为：" + arrayList);
+                    PrintLog.log("the connected component of cut point:" + i + " is " + arrayList);
                     Map map1 = new HashMap();
                     map1.put(i,arrayList);
                     bccGroups.add(map1);
@@ -99,7 +100,7 @@ public class BccPoint extends Dfs{
             else {
 
                 //已经访问过的点有两种可能，第一种i是indeJ的父辈，第二种，i是indexJ的子孙
-                PrintLog.log("第 " + indexJ + " 个点已经被访问过");
+                PrintLog.log("point:" + indexJ + " was already visited");
                 PrintLog.log("i is : " + i + " ,indexJ is: " + indexJ);
                 Boolean isFather = true;
                 if (pionList.get(i).equals("nil")){
@@ -113,11 +114,10 @@ public class BccPoint extends Dfs{
                 }
 
                 if (!isFather ){
-//                    PrintLog.log("第 " + indexJ + " 个点不是第 " + i + " 点的父节点，因此 ：" + i + "-" + indexJ + " 是一条返祖边" );
-                    PrintLog.log("调整第 " + i + " 个的low值");
-                    PrintLog.log("low[" + i + "] 为：" + low[i] + " dfn[" + indexJ + "]为：" + dfn[indexJ]);
+                    PrintLog.log("revise low of point:" + i);
+                    PrintLog.log("low[" + i + "] is：" + low[i] + " dfn[" + indexJ + "] is：" + dfn[indexJ]);
                     low[i] = Math.min(low[i],dfn[indexJ]);
-                    PrintLog.log("计算后 " + low[i]);
+                    PrintLog.log( "low[" + i + "] after calculated:" + low[i]);
 
                 }
 
@@ -145,7 +145,7 @@ public class BccPoint extends Dfs{
                     map1.put(i,arrayList);
                     bccGroups.add(map1);
                     isCutPoint.set(i,true);
-                    PrintLog.log("*******************把第" + i + "个节点设置为割点*****************");
+                    PrintLog.log("set point:" + i + " to cut point");
                 }
 
             }
@@ -155,7 +155,6 @@ public class BccPoint extends Dfs{
 
 
         colorList.set(i,AlgColor.ALG_COLOR_BLACK);
-//        time = time + 1;
         leaveTime.set(i,time);
 
     }

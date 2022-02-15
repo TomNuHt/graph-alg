@@ -22,7 +22,7 @@ public class DagShortestPath {
         ArrayList<Integer> queue = topologicalSorting.queue;
         Map<Integer,ArrayList<Integer>> graphMap = graphList.returnMap();
         for (int i = 0 ; i < queue.size();i++){
-            PrintLog.log("========" +queue.get(i) + "+++++++");
+//            PrintLog.log("========" +queue.get(i) + "+++++++");
             if (i < queue.indexOf(sourceIndex)){
 
                 continue;

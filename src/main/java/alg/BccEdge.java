@@ -8,13 +8,15 @@ import util.PrintLog;
 import java.util.ArrayList;
 import java.util.Map;
 
+//
 public class BccEdge extends Dfs{
 
     public Integer[] dfn;
     public Integer[] low;
     public ArrayList<Integer[]> cutEdges = new ArrayList<Integer[]>();
-    public ArrayList<Map> getBccGroups(){
 
+    //remove cut edges of the graph
+    public ArrayList<Map> getBccGroups(){
         Integer[][] matrix = GraphTool.listToMatrix(graphList);
         for (int i = 0 ; i < cutEdges.size();i++){
             Integer[] cutEdge = cutEdges.get(i);
@@ -22,11 +24,9 @@ public class BccEdge extends Dfs{
             matrix[cutEdge[0]][cutEdge[1]] = AlgNumber.ALG_INTEGER_INFINITE;
             matrix[cutEdge[1]][cutEdge[0]] = AlgNumber.ALG_INTEGER_INFINITE;
         }
-
         PrintLog.printMatrix(matrix);
         GraphList graphList = GraphTool.matrixToList(matrix);
         return graphList.returnList();
-
     }
 
     @Override
@@ -34,11 +34,11 @@ public class BccEdge extends Dfs{
         time = time + 1;
         dfn[i] = time;
         low[i] = time;
-        PrintLog.log("将第" + i + "个点的dfn值设置为：" + dfn[i]);
-        PrintLog.log("将第" + i + "个点的low值设置为：" + low[i]);
+        PrintLog.log("set dfn of point:" + i + " to " + dfn[i]);
+        PrintLog.log("set low of point:" + i + " to " + low[i]);
         visitTime.set(i,time);
         colorList.set(i, AlgColor.ALG_COLOR_GRAY);
-        PrintLog.log("将第" + i + "个点的颜色设置为灰色");
+        PrintLog.log("set color of point:" + i + " to gray");
 
         //链表
         ArrayList<Map> mapArrayList = this.graphList.returnList();
@@ -49,7 +49,7 @@ public class BccEdge extends Dfs{
         //与i相连的节点
         ArrayList<Integer> connectedList = (ArrayList<Integer>)map.get("connectedList");
 
-        PrintLog.log("与" + i + "相连的点有：" + connectedList);
+        PrintLog.log("adj of point:" + i + " are：" + connectedList);
         for (int j = 0 ; j < connectedList.size();j++){
 
             int indexJ = connectedList.get(j);
@@ -70,9 +70,7 @@ public class BccEdge extends Dfs{
 
             else {
 
-                PrintLog.log("第" + indexJ + "个点已被访问过");
-                PrintLog.log(pionList);
-                PrintLog.log(i);
+                PrintLog.log("point:" + indexJ + " was already visited");
                 if (pionList.get(i).equals("nil")) {
                     low[i] = Math.min(low[i],dfn[indexJ]);
                 }
@@ -84,8 +82,8 @@ public class BccEdge extends Dfs{
 
         }
         colorList.set(i,AlgColor.ALG_COLOR_BLACK);
-        PrintLog.log("将第" + i + "个点设置为黑色");
-        PrintLog.log("第" + i + "个点的离开时间为：" + time);
+        PrintLog.log("set color of point:" + i + " to black");
+        PrintLog.log("point:" + i + " left at：" + time);
         leaveTime.set(i,time);
 
     }

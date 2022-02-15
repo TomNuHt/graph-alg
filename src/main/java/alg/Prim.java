@@ -12,8 +12,8 @@ import java.util.Random;
 public class Prim {
 
     ArrayList<Integer> points;
-    ArrayList<Integer> connectedPoints = new ArrayList<Integer>();
-    ArrayList<Edge> edges = new ArrayList<Edge>();
+    public ArrayList<Integer> connectedPoints = new ArrayList<Integer>();
+    public ArrayList<Edge> edges = new ArrayList<Edge>();
 
     public void search(Double[][] graphArray){
 

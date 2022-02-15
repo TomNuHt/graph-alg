@@ -1,7 +1,6 @@
 package alg;
 
 import interfaces.AlgNumber;
-import pojo.Edge;
 import pojo.GraphList;
 
 import java.util.ArrayList;
@@ -9,7 +8,7 @@ import java.util.Map;
 
 public class BellmanFord {
 
-    public ArrayList<Double> sd = new ArrayList<Double>();
+    public ArrayList<Double> sd = new ArrayList<Double>();//distance between source index and the other point
     public ArrayList<Integer> pai = new ArrayList<Integer>();
 
     //edgemap,key(u_v):value(权重)  u_v:从u指向v

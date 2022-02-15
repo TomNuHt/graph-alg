@@ -28,7 +28,7 @@ public class DfsKosaraju extends Dfs{
         while (colorList.contains(AlgColor.ALG_COLOR_WHITE)){
 
             int nextIndex = findMaxLeaveTime(leaveTimeList);
-            PrintLog.log(colorList + " nextIndex:" + nextIndex + " leave at: " + leaveTimeList.get(nextIndex));
+            PrintLog.log( "colorlist is:"+ colorList + " nextIndex:" + nextIndex + " leave at: " + leaveTimeList.get(nextIndex));
             dfsCore(nextIndex);
 
         }

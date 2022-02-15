@@ -6,22 +6,22 @@ import java.util.ArrayList;
 
 public class FloydWarShall {
 
+    public ArrayList<Double[][]> dList;
+    ArrayList<String[][]> pList;
+
+    //return
     public void cal(Double[][] graphArray){
-
-
 
         graphArray = reviseWarray(graphArray);
         PrintLog.printMatrix(graphArray);
-
         int graphSize = graphArray.length;
-
         Double[][] d0 = initialD(graphArray);
         String[][] pai0 = initialPai(graphArray);
 
         PrintLog.printMatrix(pai0);
-        ArrayList<Double[][]> dList = new ArrayList<Double[][]>();
+        dList = new ArrayList<Double[][]>();
         dList.add(d0);
-        ArrayList<String[][]> pList = new ArrayList<String[][]>();
+        pList = new ArrayList<String[][]>();
         pList.add(pai0);
 
         for (int k = 1 ; k < (graphSize + 1);k++){
@@ -61,13 +61,13 @@ public class FloydWarShall {
             dList.add(d);
             pList.add(pai);
 
-            PrintLog.log("-------------");
-            PrintLog.log("k = " + k);
-            PrintLog.log("d" + k);
-            PrintLog.printMatrix(d);
-            PrintLog.log("-------------");
-            PrintLog.log("pai " + k);
-            PrintLog.printMatrix(pai);
+//            PrintLog.log("-------------");
+//            PrintLog.log("k = " + k);
+//            PrintLog.log("d" + k);
+//            PrintLog.printMatrix(d);
+//            PrintLog.log("-------------");
+//            PrintLog.log("pai " + k);
+//            PrintLog.printMatrix(pai);
 
         }
 

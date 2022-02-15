@@ -37,12 +37,12 @@ public class TopologicalSorting {
             }
         }
 
-        PrintLog.log("初始入度:" + inDegreeList);
-        PrintLog.log("初始出度:" + outDegreeList);
+        PrintLog.log("initial in degree:" + inDegreeList);
+        PrintLog.log("initial out degree:" + outDegreeList);
 
         if (!inDegreeList.contains(0)){
 
-            throw new Exception("该图存在环");
+            throw new Exception("this graph has circle");
 
         }
 
@@ -60,7 +60,7 @@ public class TopologicalSorting {
 
         }
 
-        PrintLog.log("算法挑选的入度为0的初始点：" + theFirstPickPoint);
+        PrintLog.log("the first zero in degree point picked is point：" + theFirstPickPoint);
         
         tsCore(theFirstPickPoint);
 
@@ -70,10 +70,10 @@ public class TopologicalSorting {
     public void tsCore(int vertexIndex) throws Exception {
 
         queue.add(vertexIndex);
-        PrintLog.log("队列加入：" + vertexIndex + " ,队列为：" + queue);
+        PrintLog.log("queue add：" + vertexIndex + " ,queue is：" + queue);
 
         inDegreeList.set(vertexIndex,-11111);
-        PrintLog.log("入度队列清除 ：" + vertexIndex + ",入度队列为：" + inDegreeList);
+        PrintLog.log("queue remove point:" + vertexIndex + ",queue now:" + inDegreeList);
 
         ArrayList<Map> mapArrayList = this.graphList.returnList();
         Map map = mapArrayList.get(vertexIndex);
@@ -100,7 +100,7 @@ public class TopologicalSorting {
             if(inDegreeList.get(i) != -11111 && nextIndex == -1){
 
                 PrintLog.log(inDegreeList);
-                throw new Exception("该图有环");
+                throw new Exception("this graph has circle");
 
             }
 

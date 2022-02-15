@@ -1,12 +1,12 @@
 package alg;
 
 import interfaces.AlgColor;
-import interfaces.AlgNumber;
 import pojo.GraphList;
 import util.PrintLog;
 
 import java.util.ArrayList;
 import java.util.Map;
+
 
 public class Dfs {
 
@@ -25,6 +25,7 @@ public class Dfs {
     public ArrayList<Integer> leaveTime = new ArrayList<Integer>();
     int time = 0;
 
+    //begin search from 0
     public void search(GraphList graphList){
 
         this.graphList = graphList;
@@ -33,13 +34,35 @@ public class Dfs {
         for (int i = 0 ; i < pointSize;i++){
 
             if (colorList.get(i).equals(AlgColor.ALG_COLOR_WHITE)){
-                PrintLog.log("第" + i + "个点为白色，开始搜索");
+                PrintLog.log("point:" + i + " is white，begin search:");
                 dfsCore(i);
             }
 
         }
 
-        PrintLog.log("深度优先搜索树：" + pionList);
+        PrintLog.log("pion list of dfs tree:" + pionList);
+    }
+
+
+    public void searchBy(GraphList graphList,int firstIndex){
+
+        this.graphList = graphList;
+        int pointSize = this.graphList.returnList().size();
+        initialGraph(pointSize);
+        PrintLog.log("point:" + firstIndex + " is white，begin search:");
+        dfsCore(firstIndex);
+        for (int i = 0 ; i < pointSize;i++){
+
+            if (i == firstIndex){
+
+                continue;
+            }
+            if (colorList.get(i).equals(AlgColor.ALG_COLOR_WHITE)){
+                PrintLog.log("point:" + i + " is white，begin search:");
+                dfsCore(i);
+            }
+        }
+        PrintLog.log("pion list of dfs tree:" + pionList);
     }
 
     public void dfsCore(int i){
@@ -47,9 +70,9 @@ public class Dfs {
 
         time = time + 1;
         visitTime.set(i,time);
-        PrintLog.log("第" + time + "时刻访问第：" + i + "个点");
+        PrintLog.log("at time:" + time + ",visit point:" + i);
         colorList.set(i,AlgColor.ALG_COLOR_GRAY);
-        PrintLog.log("将第" + i + "个点的颜色设置为灰色");
+        PrintLog.log("set color of point:" + i + " to gray");
 
         //链表
         ArrayList<Map> mapArrayList = this.graphList.returnList();
@@ -59,7 +82,7 @@ public class Dfs {
 
         //与i相连的节点
         ArrayList<Integer> connectedList = (ArrayList<Integer>)map.get("connectedList");
-        PrintLog.log("与" + i + "相连的有：" +connectedList);
+        PrintLog.log("adj of point:" + i + " is：" +connectedList);
 
         for (int j = 0 ; j < connectedList.size();j++){
 
@@ -69,7 +92,7 @@ public class Dfs {
 
                 pionList.set(indexJ,String.valueOf(i));
                 dfsCore(indexJ);
-                PrintLog.log("开始搜索第" + indexJ + "个点");
+                PrintLog.log("begin to search point:" + indexJ);
 
             }
 
@@ -81,9 +104,9 @@ public class Dfs {
         }
 
         colorList.set(i,AlgColor.ALG_COLOR_BLACK);
-        PrintLog.log("将第" + i + "个点设置为黑色");
-//        time = time + 1;
-        PrintLog.log("第" + i + "个点的离开时间为：" + time);
+        PrintLog.log("set color of point:" + i + " to black");
+        time = time + 1;
+        PrintLog.log("the leave time of point:" + i + " is time:" + time);
         leaveTime.set(i,time);
 
     }
@@ -91,8 +114,6 @@ public class Dfs {
 
     //初始化
     public void initialGraph(int pointSize){
-
-
 
         for (int i = 0; i < pointSize; i++){
 

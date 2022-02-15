@@ -19,7 +19,7 @@ public class Kruskal {
     ArrayList<DisjointChain> chains = new ArrayList<DisjointChain>();
     ArrayList<DisjointChainObject> chainObjects = new ArrayList<DisjointChainObject>();
     Map<String,Double> edgesMap = new HashMap();
-    Double[][] graphArraySmall;//最小生成树的邻接矩阵
+    public Double[][] graphArraySmall;//最小生成树的邻接矩阵
     ArrayList<Edge> a = new ArrayList<Edge>();
 
     public void initialGraphArraySmall(int length){

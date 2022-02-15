@@ -7,18 +7,16 @@ import java.util.Map;
 
 public class ExtendShortestPaths {
 
+    public Double[][] l;
     public void cal(Double[][] graphArray){
 
         graphArray = reviseWarray(graphArray);
-//        PrintLog.printMatrix(graphArray);
         int vertexSize = graphArray.length;
-        Double[][] l = initialL(vertexSize,graphArray);
+        l = initialL(vertexSize,graphArray);
 
         int counter = 1;
         while (counter <= vertexSize - 2 ){
 
-            PrintLog.log("---------------");
-            PrintLog.printMatrix(l);
 
             for (int i = 0 ; i < vertexSize;i++){
                 for (int j= 0 ; j < vertexSize;j++){
@@ -38,8 +36,6 @@ public class ExtendShortestPaths {
             }
             counter +=1;
         }
-        PrintLog.log("-------------");
-        PrintLog.printMatrix(l);
     }
 
     public Double[][] reviseWarray(Double[][] graphArray){

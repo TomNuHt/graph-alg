@@ -31,14 +31,14 @@ public class Bfs {
         //初始化
         int pointSize = this.graphList.returnList().size();
 
-        PrintLog.log("结点数量" + pointSize);
+        PrintLog.log("number of node is " + pointSize);
 
         initialGraph(pointSize);
 
         //挑选某个节点为根节点
         int firstVertex = random.nextInt(pointSize);
 
-        PrintLog.log("第一个结点编号：" + firstVertex);
+        PrintLog.log("the index of first point is:" + firstVertex);
 
         //链表
         ArrayList<Map> mapArrayList = this.graphList.returnList();
@@ -67,7 +67,7 @@ public class Bfs {
             bfsCore();
 
         }
-        PrintLog.log("打印搜索树：" + pionList);
+        PrintLog.log("print pionlist：" + pionList);
     }
 
     public void bfsCore(){

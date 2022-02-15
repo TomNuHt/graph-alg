@@ -4,12 +4,12 @@ import interfaces.AlgNumber;
 import pojo.GraphList;
 import util.GraphTool;
 import util.PrintLog;
-
-import javax.xml.transform.Source;
 import java.util.ArrayList;
 import java.util.Map;
 
 public class FordFulkson {
+
+    public double maxFlowValue;
 
     public Double[][] cal(Double[][] graphArray, Map<String,Double> edgeCapacityMap,int sourceIndex,int targetIndex){
         //获取残存网络
@@ -37,6 +37,7 @@ public class FordFulkson {
         PrintLog.printMatrix(graphArray);
         PrintLog.log("max flow value");
         PrintLog.log(getMaxFlowValue(graphArray,sourceIndex));
+        maxFlowValue = getMaxFlowValue(graphArray,sourceIndex);
         return graphArray;
     }
 
@@ -68,7 +69,7 @@ public class FordFulkson {
 
         ArrayList<String> edgeNameList = new ArrayList<String>();
 
-        PrintLog.log("增广路径：" + paths);
+        PrintLog.log("argument path：" + paths);
 
         String firstBefore = paths.get(0);
         //找到路径上的所有边
@@ -94,8 +95,8 @@ public class FordFulkson {
         PrintLog.log("minFlow " + minFlow);
         PrintLog.log("edgeNameList" + edgeNameList);
         //修改原graphArray
-        PrintLog.log("开始修改graphArray:");
-        PrintLog.log("修改前:");
+        PrintLog.log("begin to revise graphArray:");
+        PrintLog.log("before:");
         PrintLog.printMatrix(graphArray);
         for (int i=0 ; i < edgeNameList.size();i++){
             String edgeName = edgeNameList.get(i);
@@ -116,7 +117,7 @@ public class FordFulkson {
             }
 
         }
-        PrintLog.log("修改后:");
+        PrintLog.log("after:");
 //        PrintLog.logKey("测试");
         PrintLog.printMatrix(graphArray);
         return graphArray;
@@ -138,7 +139,7 @@ public class FordFulkson {
 
     public Double[][] getRemainNetWork(Double[][] graphArray, Map<String,Double> edgeCapacityMap){
 
-        PrintLog.log("开始获取残存网络");
+        PrintLog.log("begin to cal remain network:");
 //        PrintLog.log("原网络");
 //        PrintLog.printMatrix(graphArray);
         Double[][] remainNetWork = getEmptyGraphArray(graphArray);
@@ -164,9 +165,9 @@ public class FordFulkson {
             }
         }
 
-        PrintLog.log("残存网络：");
+        PrintLog.log("remain network：");
         PrintLog.printMatrix(remainNetWork);
-        PrintLog.log("残存网络计算完毕");
+        PrintLog.log("calculate remain network end");
         return remainNetWork;
     }
 

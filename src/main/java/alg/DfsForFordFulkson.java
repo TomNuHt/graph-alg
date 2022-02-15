@@ -12,7 +12,7 @@ public class DfsForFordFulkson extends Dfs{
     //返回的增广路径是从s到t的标号。
     public ArrayList<String> search(GraphList graphList,int sourceIndex,int endIndex) throws Exception {
 
-        PrintLog.log("开始寻找增广路径，源结点为：" + sourceIndex + " 汇结点为：" + endIndex);
+        PrintLog.log("begin to find argument path，source point is point:" + sourceIndex + " target point is:" + endIndex);
         this.graphList = graphList;
         int pointSize = this.graphList.returnList().size();
         initialGraph(pointSize);
@@ -20,7 +20,7 @@ public class DfsForFordFulkson extends Dfs{
 
         //从源点开始dfs搜索，如果能找到汇点，那么存在一条增广路径，如果不能找到，那么不存
         dfsCore(sourceIndex);
-        PrintLog.log("从源结点开始深度优先搜索结束");
+        PrintLog.log("dfs from soure point end");
         PrintLog.log(colorList);
         PrintLog.log(pionList);
         String colorOfEndIndex = colorList.get(endIndex);
@@ -35,10 +35,7 @@ public class DfsForFordFulkson extends Dfs{
             pathIndexList.add(String.valueOf(endIndex));
             int nextIndex = endIndex;
             while (true){
-//                PrintLog.log(pathIndexList);
                 int pai = Integer.valueOf(pionList.get(nextIndex));
-//                int pai = pionList.indexOf(String.valueOf(nextIndex));
-                PrintLog.log(pai);
                 pathIndexList.add(String.valueOf(pai));
 
                 if (pai == sourceIndex){
@@ -51,7 +48,7 @@ public class DfsForFordFulkson extends Dfs{
 
         }
 
-        PrintLog.log("深度优先搜索树：" + pionList);
+        PrintLog.log("pionlist is：" + pionList);
         return pathIndexList;
 
     }
