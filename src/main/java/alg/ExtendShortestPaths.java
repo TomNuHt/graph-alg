@@ -21,7 +21,7 @@ public class ExtendShortestPaths {
             for (int i = 0 ; i < vertexSize;i++){
                 for (int j= 0 ; j < vertexSize;j++){
                     //l-ik,w-kj
-                    double minTemp = AlgNumber.ALG_DOUBLE_INFINITE;
+                    double minTemp = AlgNumber.ALG_DOUBLE_POSITIVE_INFINITY;
                     for (int k = 0 ; k < vertexSize;k++){
                         double temp = l[i][k] + graphArray[k][j];
                         System.out.println(temp);
@@ -74,7 +74,7 @@ public class ExtendShortestPaths {
 
                 for (int j= 0 ; j < vertexSize;j++){
                     //l-ik,w-kj
-                    double minTemp = AlgNumber.ALG_DOUBLE_INFINITE;
+                    double minTemp = AlgNumber.ALG_DOUBLE_POSITIVE_INFINITY;
                     for (int k = 0 ; k < vertexSize;k++){
                         double temp = l[i][k] + l[k][j];
                         if (temp < minTemp){

@@ -1,6 +1,7 @@
 package alg;
 
 import interfaces.AlgColor;
+import interfaces.AlgNumber;
 import pojo.GraphList;
 import util.PrintLog;
 
@@ -53,9 +54,7 @@ public class Bfs {
         pionList.set(firstVertexIndex,"nil");
         disList.set(firstVertexIndex,0.0);
         queue.add(firstVertexIndex);
-
         bfsCore();
-
         while (colorList.contains(AlgColor.ALG_COLOR_WHITE)){
 
             int left = colorList.indexOf(AlgColor.ALG_COLOR_WHITE);
@@ -65,7 +64,39 @@ public class Bfs {
             this.queue = new ArrayList<Integer>();
             queue.add(left);
             bfsCore();
+        }
+        PrintLog.log("print pionlist：" + pionList);
+    }
 
+    public void searchBy(GraphList graphList,int firstIndex){
+
+        this.graphList = graphList;
+        //初始化
+        int pointSize = this.graphList.returnList().size();
+        PrintLog.log("number of node is " + pointSize);
+        initialGraph(pointSize);
+        //挑选某个节点为搜索的起点
+        int firstVertex = firstIndex;
+        PrintLog.log("the index of first point is:" + firstVertex);
+        //链表
+        ArrayList<Map> mapArrayList = this.graphList.returnList();
+        //根节点的链表
+        Map<String,Object> rootMap = mapArrayList.get(firstVertex);
+        int firstVertexIndex = (Integer) rootMap.get("index");
+        //
+        colorList.set(firstVertexIndex,AlgColor.ALG_COLOR_GRAY);
+        pionList.set(firstVertexIndex,"nil");
+        disList.set(firstVertexIndex,0.0);
+        queue.add(firstVertexIndex);
+        bfsCore();
+        while (colorList.contains(AlgColor.ALG_COLOR_WHITE)){
+            int left = colorList.indexOf(AlgColor.ALG_COLOR_WHITE);
+            colorList.set(left,AlgColor.ALG_COLOR_GRAY);
+            pionList.set(left,"nil");
+            disList.set(left,0.0);
+            this.queue = new ArrayList<Integer>();
+            queue.add(left);
+            bfsCore();
         }
         PrintLog.log("print pionlist：" + pionList);
     }
@@ -113,7 +144,7 @@ public class Bfs {
 
         for (int i = 0; i < pointSize; i++){
             colorList.add(AlgColor.ALG_COLOR_WHITE);
-            disList.add(Double.POSITIVE_INFINITY);
+            disList.add(AlgNumber.ALG_DOUBLE_POSITIVE_INFINITY);
             pionList.add("-1");
 
         }

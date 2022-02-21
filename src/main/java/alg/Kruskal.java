@@ -104,7 +104,7 @@ public class Kruskal {
 
                 String edgeKey = i + "_" + j;
                 double weight = graphArray[i][j];
-                if (weight == AlgNumber.ALG_DOUBLE_INFINITE){
+                if (weight == AlgNumber.ALG_DOUBLE_POSITIVE_INFINITY){
 
                     continue;
 

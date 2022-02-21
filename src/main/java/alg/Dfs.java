@@ -1,6 +1,7 @@
 package alg;
 
 import interfaces.AlgColor;
+import interfaces.AlgNumber;
 import pojo.GraphList;
 import util.PrintLog;
 
@@ -118,7 +119,7 @@ public class Dfs {
         for (int i = 0; i < pointSize; i++){
 
             colorList.add(AlgColor.ALG_COLOR_WHITE);
-            disList.add(Double.POSITIVE_INFINITY);
+            disList.add(AlgNumber.ALG_DOUBLE_POSITIVE_INFINITY);
             pionList.add("nil");
             visitTime.add(0);
             leaveTime.add(0);

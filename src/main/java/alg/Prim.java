@@ -51,7 +51,7 @@ public class Prim {
             int index = connectedPoints.get(i);
             for (int j = 0 ; j < graphArray.length;j++){
                 double weight = graphArray[index][j];
-                if (weight != AlgNumber.ALG_DOUBLE_INFINITE && !connectedPoints.contains(j)){
+                if (weight != AlgNumber.ALG_DOUBLE_POSITIVE_INFINITY && !connectedPoints.contains(j)){
                     connectedOutSidePoints.add(j);
                     edgesMap.put(i +"_"+ j,weight);
                 }

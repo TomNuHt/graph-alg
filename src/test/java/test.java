@@ -1,8 +1,10 @@
 import alg.*;
+import com.google.gson.Gson;
 import pojo.GraphList;
 import pojo.GraphMatrix;
 import pojo.GraphMatrixWeight;
 import util.GraphTool;
+import util.PrintLog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +14,34 @@ public class test {
 
     public static void main(String[] args) throws Exception {
         //--------------------------------------------------------------
-        //test bfs,dfs
+        //dfs算法测试用例算法导论351
+//        ArrayList<Integer> list0 = new ArrayList<Integer>();
+//        ArrayList<Integer> list1 = new ArrayList<Integer>();
+//        ArrayList<Integer> list2 = new ArrayList<Integer>();
+//        ArrayList<Integer> list3 = new ArrayList<Integer>();
+//        ArrayList<Integer> list4 = new ArrayList<Integer>();
+//        ArrayList<Integer> list5 = new ArrayList<Integer>();
+//        list0.add(2);
+//        list1.add(0);
+//        list1.add(2);
+//        list2.add(3);
+//        list3.add(0);
+//        list4.add(3);
+//        list4.add(5);
+//        list5.add(5);
+//        GraphList graphList = new GraphList();
+//        graphList.buildListMap(0,list0);
+//        graphList.buildListMap(1,list1);
+//        graphList.buildListMap(2,list2);
+//        graphList.buildListMap(3,list3);
+//        graphList.buildListMap(4,list4);
+//        graphList.buildListMap(5,list5);
+//        Dfs dfs = new Dfs();
+//        dfs.search(graphList);
+//        dfs.searchBy(graphList,5);
+
+        //--------------------------------------------------------------
+        //bfs算法测试用例，算法导论345页
 //        ArrayList<Integer> list0 = new ArrayList<Integer>();
 //        ArrayList<Integer> list1 = new ArrayList<Integer>();
 //        ArrayList<Integer> list2 = new ArrayList<Integer>();
@@ -21,14 +50,25 @@ public class test {
 //        ArrayList<Integer> list5 = new ArrayList<Integer>();
 //        ArrayList<Integer> list6 = new ArrayList<Integer>();
 //        ArrayList<Integer> list7 = new ArrayList<Integer>();
+//        list0.add(1);
 //        list1.add(0);
 //        list1.add(2);
-//        list2.add(4);
-//        list3.add(0);
+//        list2.add(1);
+//        list2.add(3);
 //        list3.add(2);
+//        list3.add(4);
+//        list3.add(5);
+//        list4.add(3);
 //        list4.add(5);
+//        list4.add(6);
+//        list5.add(3);
+//        list5.add(4);
+//        list5.add(6);
+//        list6.add(4);
 //        list6.add(5);
+//        list6.add(7);
 //        list7.add(5);
+//        list7.add(6);
 //        GraphList graphList = new GraphList();
 //        graphList.buildListMap(0,list0);
 //        graphList.buildListMap(1,list1);
@@ -38,97 +78,122 @@ public class test {
 //        graphList.buildListMap(5,list5);
 //        graphList.buildListMap(6,list6);
 //        graphList.buildListMap(7,list7);
-
 //        Bfs bfs = new Bfs();
 //        bfs.search(graphList);
-//        Dfs dfs = new Dfs();
-//        dfs.search(graphList);
-//        dfs.searchBy(graphList,1);
+//        bfs.searchBy(graphList,2);
 
         //--------------------------------------------------------------
+        //TopologicalSorting算法测试用例，算法导论355页
+//        ArrayList<Integer> list0 = new ArrayList<Integer>();
+//        ArrayList<Integer> list1 = new ArrayList<Integer>();
+//        ArrayList<Integer> list2 = new ArrayList<Integer>();
+//        ArrayList<Integer> list3 = new ArrayList<Integer>();
+//        ArrayList<Integer> list4 = new ArrayList<Integer>();
+//        ArrayList<Integer> list5 = new ArrayList<Integer>();
+//        ArrayList<Integer> list6 = new ArrayList<Integer>();
+//        ArrayList<Integer> list7 = new ArrayList<Integer>();
+//        ArrayList<Integer> list8 = new ArrayList<Integer>();
+//        list0.add(1);
+//        list0.add(7);
+//        list1.add(2);
+//        list1.add(7);
+//        list2.add(5);
+//        list3.add(4);
+//        list3.add(2);
+//        list4.add(5);
+//        list6.add(7);
+//        GraphList graphList = new GraphList();
+//        graphList.buildListMap(0,list0);
+//        graphList.buildListMap(1,list1);
+//        graphList.buildListMap(2,list2);
+//        graphList.buildListMap(3,list3);
+//        graphList.buildListMap(4,list4);
+//        graphList.buildListMap(5,list5);
+//        graphList.buildListMap(6,list6);
+//        graphList.buildListMap(7,list7);
+//        graphList.buildListMap(8,list8);
 //        TopologicalSorting topologicalSorting = new TopologicalSorting();
 //        topologicalSorting.search(graphList);
+        //--------------------------------------------------------------
+        //Kosaraju算法测试用例，算法导论357页
+//        ArrayList<Integer> list0 = new ArrayList<Integer>();
+//        ArrayList<Integer> list1 = new ArrayList<Integer>();
+//        ArrayList<Integer> list2 = new ArrayList<Integer>();
+//        ArrayList<Integer> list3 = new ArrayList<Integer>();
+//        ArrayList<Integer> list4 = new ArrayList<Integer>();
+//        ArrayList<Integer> list5 = new ArrayList<Integer>();
+//        ArrayList<Integer> list6 = new ArrayList<Integer>();
+//        ArrayList<Integer> list7 = new ArrayList<Integer>();
+//        list0.add(1);
+//        list1.add(2);
+//        list1.add(4);
+//        list1.add(5);
+//        list2.add(3);
+//        list2.add(6);
+//        list3.add(7);
+//        list3.add(2);
+//        list4.add(0);
+//        list4.add(5);
+//        list5.add(6);
+//        list6.add(5);
+//        list6.add(7);
+//        list7.add(7);
+//        GraphList graphList = new GraphList();
+//        graphList.buildListMap(0,list0);
+//        graphList.buildListMap(1,list1);
+//        graphList.buildListMap(2,list2);
+//        graphList.buildListMap(3,list3);
+//        graphList.buildListMap(4,list4);
+//        graphList.buildListMap(5,list5);
+//        graphList.buildListMap(6,list6);
+//        graphList.buildListMap(7,list7);
 //        Kosaraju kosaraju = new Kosaraju();
 //        kosaraju.search(graphList);
-
-//        GraphMatrix graphMatrix = new GraphMatrix(8,8);
-//        graphMatrix.addConnected("1");
-//        graphMatrix.addConnected("2 4 5");
-//        graphMatrix.addConnected("3 6");
-//        graphMatrix.addConnected("2 7");
-//        graphMatrix.addConnected("0 5");
-//        graphMatrix.addConnected("6");
-//        graphMatrix.addConnected("5 7");
-//        graphMatrix.addConnected("7");
-//        Integer[][] array = graphMatrix.returnMatrix();
-//        PrintLog.printMatrix(array);
-//        GraphList graphList = GraphTool.matrixToList(array);
-//        Kosaraju kosaraju = new Kosaraju();
-//        kosaraju.search(graphList);
-//
-//        GraphMatrix graphMatrix = new GraphMatrix(12,12);
-//        graphMatrix.addConnected("1 8 11");
-//        graphMatrix.addConnected("0 2 4");
-//        graphMatrix.addConnected("1 3 4");
-//        graphMatrix.addConnected("2 4");
-//        graphMatrix.addConnected("1 2 3 5");
-//        graphMatrix.addConnected("4 6 7 ");
-//        graphMatrix.addConnected("5 7");
-//        graphMatrix.addConnected("5 6");
-//        graphMatrix.addConnected("0 11 9 10");
-//        graphMatrix.addConnected("8 10");
-//        graphMatrix.addConnected("8 9");
-//        graphMatrix.addConnected("0 8");
-//--------------------------------------------------------------
-        //bccedge,bccpoint
-        GraphMatrix graphMatrix = new GraphMatrix(12,12);
-        graphMatrix.addConnected("1");
-        graphMatrix.addConnected("2 9");
-        graphMatrix.addConnected("1 3");
-        graphMatrix.addConnected("4 8");
-        graphMatrix.addConnected("3 5 10");
-        graphMatrix.addConnected("4 6 7");
-        graphMatrix.addConnected("5 7");
-        graphMatrix.addConnected("5 6 8 9");
-        graphMatrix.addConnected("3 7");
-        graphMatrix.addConnected("1 7");
-        graphMatrix.addConnected("4 11");
-        graphMatrix.addConnected("10");
-//
+        //--------------------------------------------------------------
+        //Bccedge、BccPoint算法测试用例算法导论360页22-2
+        GraphMatrix graphMatrix = new GraphMatrix(23,23);
+        graphMatrix.addConnectedCore(0,"1 2 3");
+        graphMatrix.addConnectedCore(1,"0 2 3");
+        graphMatrix.addConnectedCore(2,"1 0 3 4");
+        graphMatrix.addConnectedCore(3,"0 1 2");
+        graphMatrix.addConnectedCore(4,"5 6 7 8 2 10");
+        graphMatrix.addConnectedCore(5,"4 6");
+        graphMatrix.addConnectedCore(6,"4 5");
+        graphMatrix.addConnectedCore(7,"4 8");
+        graphMatrix.addConnectedCore(8,"4 7 9");
+        graphMatrix.addConnectedCore(9,"8");
+        graphMatrix.addConnectedCore(10,"4 11 13");
+        graphMatrix.addConnectedCore(11,"10 12");
+        graphMatrix.addConnectedCore(12,"11 13 14");
+        graphMatrix.addConnectedCore(13,"10 12");
+        graphMatrix.addConnectedCore(14,"12 15 16 18");
+        graphMatrix.addConnectedCore(15,"14 18 16 17");
+        graphMatrix.addConnectedCore(16,"15 18 17 14");
+        graphMatrix.addConnectedCore(17,"15 16 18");
+        graphMatrix.addConnectedCore(18,"14 15 16 17 19 22");
+        graphMatrix.addConnectedCore(19,"20 18 21");
+        graphMatrix.addConnectedCore(20,"21 19");
+        graphMatrix.addConnectedCore(21,"20 19");
+        graphMatrix.addConnectedCore(22,"18");
         Integer[][] array = graphMatrix.returnMatrix();
         GraphList graphList = GraphTool.matrixToList(array);
-//
-        BccEdge bccEdge = new BccEdge();
-        bccEdge.search(graphList);
 
-//        BccPoint bccPoint = new BccPoint();
-//        bccPoint.search(graphList);
-//        ArrayList<Map> bccGroups = bccEdge.getBccGroups();
-//
-//        PrintLog.printArray(bccEdge.low);
-//        PrintLog.printArray(bccEdge.dfn);
-//        PrintLog.log(bccEdge.cutEdges);
-//        System.out.println(bccGroups);
-//
-//        for (int i = 0 ; i < bccEdge.cutEdges.size();i++){
-//
-//            Integer[] a = bccEdge.cutEdges.get(i);
-//            System.out.println(a[0] + "-" + a[1]);
-//
-//        }
+//        BccEdge bccEdge = new BccEdge();
+//        bccEdge.search(graphList);
+//        ArrayList<ArrayList<String>> groups = bccEdge.getBccGroups();
+//        PrintLog.log(groups);
 
-//        Dfs dfs = new Dfs();
-//        dfs.search(graphList);
-//        PrintLog.log(dfs.leaveTime);
-//        PrintLog.log(dfs.visitTime);
+        BccPoint bccPoint = new BccPoint();
+        bccPoint.search(graphList);
+        PrintLog.log(bccPoint.isCutPoint);
+        PrintLog.log(bccPoint.cutPointList);
+        ArrayList<Map> bccGroups = bccPoint.bccGroups;
+        Gson gson = new Gson();
+        String str = gson.toJson(bccGroups);
+        PrintLog.log(str);
 
-//        BccPoint bccPoint = new BccPoint();
-//        bccPoint.search(graphList);
-//        PrintLog.printArray(bccPoint.dfn);
-//        PrintLog.printArray(bccPoint.low);
-//        PrintLog.log(bccPoint.isCutPoint);
-//        PrintLog.log(bccPoint.pionList);
-//
+        //--------------------------------------------------------------
+        //Kruskal算法测试用例算法导论360页22-2
 //        GraphMatrixWeight graphMatrix = new GraphMatrixWeight(9,9);
 //        graphMatrix.addConnected("1 7");
 //        graphMatrix.addConnected("0 2 7");
@@ -139,7 +204,7 @@ public class test {
 //        graphMatrix.addConnected("5 7");
 //        graphMatrix.addConnected("6 8 1 0");
 //        graphMatrix.addConnected("2 7");
-////
+
 //        Map<String,Double> edgeMap = new HashMap<String, Double>();
 //        edgeMap.put("0_1",4.0);
 //        edgeMap.put("0_7",8.0);

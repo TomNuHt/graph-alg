@@ -48,14 +48,14 @@ public class FordFulkson {
         int matrixSize = graphArray.length;
         for (int i = 0 ; i < matrixSize;i++){
 
-            if (!graphArray[sourceIndex][i].equals(AlgNumber.ALG_DOUBLE_INFINITE)){
+            if (!graphArray[sourceIndex][i].equals(AlgNumber.ALG_DOUBLE_POSITIVE_INFINITY)){
                 outFlow += graphArray[sourceIndex][i];
             }
         }
 
         for (int i = 0 ; i < matrixSize;i++){
 
-            if (!graphArray[i][sourceIndex].equals(AlgNumber.ALG_DOUBLE_INFINITE)){
+            if (!graphArray[i][sourceIndex].equals(AlgNumber.ALG_DOUBLE_POSITIVE_INFINITY)){
                 inFlow += graphArray[i][sourceIndex];
             }
         }
@@ -79,7 +79,7 @@ public class FordFulkson {
             edgeNameList.add(thisIndex + "_" + firstBefore);
             firstBefore = thisIndex;
         }
-        double minFlow = AlgNumber.ALG_DOUBLE_INFINITE;
+        double minFlow = AlgNumber.ALG_DOUBLE_POSITIVE_INFINITY;
         //寻找路径上所有边中权重最小的
         for (int i=0 ; i < edgeNameList.size();i++){
             String edgeName = edgeNameList.get(i);
@@ -105,7 +105,7 @@ public class FordFulkson {
             int vIndex = Integer.parseInt(uvString[1]);
 
             //如果该边在原图中不存在那么就是减小流
-            if (graphArray[uIndex][vIndex].equals(AlgNumber.ALG_DOUBLE_INFINITE)){
+            if (graphArray[uIndex][vIndex].equals(AlgNumber.ALG_DOUBLE_POSITIVE_INFINITY)){
 
                 graphArray[vIndex][uIndex] -= minFlow;
 
@@ -147,7 +147,7 @@ public class FordFulkson {
 
             for (int j = 0 ; j < graphArray.length;j++){
                 Double volume = graphArray[i][j];
-                if (volume.equals(AlgNumber.ALG_DOUBLE_INFINITE)){
+                if (volume.equals(AlgNumber.ALG_DOUBLE_POSITIVE_INFINITY)){
                     continue;
                 }
 
@@ -176,7 +176,7 @@ public class FordFulkson {
         for (int i = 0 ; i < graphArrayNew.length;i++){
 
             for ( int j = 0 ; j < graphArrayNew.length;j++){
-                graphArrayNew[i][j] = AlgNumber.ALG_DOUBLE_INFINITE;
+                graphArrayNew[i][j] = AlgNumber.ALG_DOUBLE_POSITIVE_INFINITY;
             }
         }
         return graphArrayNew;

@@ -65,8 +65,8 @@ public class BellmanFord {
     public void initialSingleSource(Integer vertexSize,Integer sourceIndex){
 
         for (int i = 0 ; i < vertexSize;i++){
-            sd.add(AlgNumber.ALG_DOUBLE_INFINITE);
-            pai.add(AlgNumber.ALG_NILL_INTEGER);
+            sd.add(AlgNumber.ALG_DOUBLE_POSITIVE_INFINITY);
+            pai.add(AlgNumber.ALG_NIL_INTEGER);
         }
         sd.set(sourceIndex,0.0);
     }

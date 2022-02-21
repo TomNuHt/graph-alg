@@ -136,7 +136,7 @@ public class FloydWarShall {
 
             for (int j = 0 ; j < graphArray.length;j++){
 
-                if (graphArray[i][j].equals(AlgNumber.ALG_DOUBLE_INFINITE) || i==j){
+                if (graphArray[i][j].equals(AlgNumber.ALG_DOUBLE_POSITIVE_INFINITY) || i==j){
 
                     pai[i][j] = "NIL";
 //                    pai[i][j] = String.valueOf(i);

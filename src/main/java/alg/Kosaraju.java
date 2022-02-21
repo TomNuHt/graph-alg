@@ -11,8 +11,7 @@ import java.util.ArrayList;
 //求有向图的强连通分量
 public class Kosaraju {
 
-    public DfsKosaraju search(GraphList graphList){
-
+    public ArrayList<ArrayList<Integer>> search(GraphList graphList){
         //dfs
         Dfs dfs = new Dfs();
         dfs.search(graphList);
@@ -27,6 +26,7 @@ public class Kosaraju {
         GraphList graphListT = GraphTool.matrixToList(graphMatrix);
         DfsKosaraju dfsKosaraju = new DfsKosaraju(leaveTimeList);
         dfsKosaraju.search(graphListT);
-        return dfsKosaraju;
+        System.out.println(dfsKosaraju.sccs);
+        return dfsKosaraju.sccs;
     }
 }

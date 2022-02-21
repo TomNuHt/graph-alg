@@ -16,7 +16,8 @@ public class BccEdge extends Dfs{
     public ArrayList<Integer[]> cutEdges = new ArrayList<Integer[]>();
 
     //remove cut edges of the graph
-    public ArrayList<Map> getBccGroups(){
+    public ArrayList<ArrayList<String>> getBccGroups(){
+        ArrayList<ArrayList<String>> groups = new ArrayList<ArrayList<String>>();
         Integer[][] matrix = GraphTool.listToMatrix(graphList);
         for (int i = 0 ; i < cutEdges.size();i++){
             Integer[] cutEdge = cutEdges.get(i);
@@ -26,7 +27,41 @@ public class BccEdge extends Dfs{
         }
         PrintLog.printMatrix(matrix);
         GraphList graphList = GraphTool.matrixToList(matrix);
-        return graphList.returnList();
+        Dfs dfs = new Dfs();
+        dfs.search(graphList);
+        ArrayList<String> pionList = dfs.pionList;
+        ArrayList<Integer> nilList = new ArrayList<Integer>();
+        for (int i = 0; i < pionList.size();i++){
+            if(pionList.get(i).equals("nil")){
+                nilList.add(i);
+            }
+        }
+        for (int i = 0 ; i < nilList.size();i++){
+            ArrayList<String> group = new ArrayList<String>();
+            int firstIndex = nilList.get(i);
+            PrintLog.log("pickNil:" + firstIndex);
+            group.add(String.valueOf(firstIndex));
+            ArrayList<Integer> nextConnList = new ArrayList<Integer>();
+            nextConnList.add(firstIndex);
+            while (true){
+                ArrayList<Integer> nextConnListTemp = new ArrayList<Integer>();
+                if (null == nextConnList || nextConnList.size() == 0){
+                    break;
+                }
+                for (int j = 0 ; j < nextConnList.size();j++){
+                    for ( int k = 0 ; k < pionList.size(); k++){
+                        if (pionList.get(k).equals(String.valueOf(nextConnList.get(j)))){
+                            nextConnListTemp.add(k);
+                            group.add(String.valueOf(k));
+                        }
+                    }
+                }
+                PrintLog.log(nextConnListTemp);
+                nextConnList = nextConnListTemp;
+            }
+            groups.add(group);
+        }
+        return groups;
     }
 
     @Override
@@ -63,9 +98,7 @@ public class BccEdge extends Dfs{
                     cutEdge[1] = indexJ;
                     PrintLog.log("add: " + i + "-" + indexJ);
                     cutEdges.add(cutEdge);
-
                 }
-
             }
 
             else {
@@ -97,7 +130,7 @@ public class BccEdge extends Dfs{
         low = new Integer[pointSize];
         for (int i = 0; i < pointSize; i++){
             colorList.add(AlgColor.ALG_COLOR_WHITE);
-            disList.add(Double.POSITIVE_INFINITY);
+            disList.add(AlgNumber.ALG_DOUBLE_POSITIVE_INFINITY);
             pionList.add("nil");
             visitTime.add(0);
             leaveTime.add(0);

@@ -1,6 +1,7 @@
 package alg;
 
 import interfaces.AlgColor;
+import interfaces.AlgNumber;
 import util.PrintLog;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class BccPoint extends Dfs{
     public ArrayList<Integer> queue = new ArrayList<Integer>();
     public ArrayList<Map> bccGroups = new ArrayList<Map>();//联通分量
     public ArrayList<Boolean> isCutPoint = new ArrayList<Boolean>();
+    public ArrayList<Integer> cutPointList = new ArrayList<Integer>();
 
     @Override
     public void dfsCore(int i){
@@ -67,6 +69,11 @@ public class BccPoint extends Dfs{
 
                     PrintLog.log(  "the father point of point:" + indexJ + " is point:" + i);
                     PrintLog.log("find cut point:" + i);
+                    if (!cutPointList.contains(i)){
+
+                        cutPointList.add(i);
+
+                    }
                     ArrayList<Integer> arrayList = new ArrayList<Integer>();
                     PrintLog.log("begin to calculate connected component：");
                     PrintLog.log("begin to delete the object on the top of stack until point:" + indexJ);
@@ -129,10 +136,8 @@ public class BccPoint extends Dfs{
 
                         if (queue.get(k) == indexJ){
                             queue.remove(k);
-
                             arrayList.add(indexJ);
                             arrayList.add(i);
-//                            continue;
                             break;
                         }
 
@@ -151,9 +156,6 @@ public class BccPoint extends Dfs{
             }
 
         }
-
-
-
         colorList.set(i,AlgColor.ALG_COLOR_BLACK);
         leaveTime.set(i,time);
 
@@ -170,7 +172,7 @@ public class BccPoint extends Dfs{
         for (int i = 0; i < pointSize; i++){
 
             colorList.add(AlgColor.ALG_COLOR_WHITE);
-            disList.add(Double.POSITIVE_INFINITY);
+            disList.add(AlgNumber.ALG_DOUBLE_POSITIVE_INFINITY);
             isCutPoint.add(false);
             pionList.add("nil");
             visitTime.add(0);
